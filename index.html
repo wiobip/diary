@@ -7,7 +7,7 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            background: #140624;
+            background: #0b0a18;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -22,32 +22,32 @@
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             background:
-                radial-gradient(ellipse at 30% 20%, rgba(100, 50, 140, 0.4) 0%, transparent 55%),
-                radial-gradient(ellipse at 70% 60%, rgba(60, 30, 110, 0.35) 0%, transparent 55%),
-                radial-gradient(ellipse at 40% 80%, rgba(130, 80, 170, 0.3) 0%, transparent 50%);
+                radial-gradient(ellipse at 30% 20%, rgba(75, 45, 130, 0.4) 0%, transparent 55%),
+                radial-gradient(ellipse at 70% 60%, rgba(45, 30, 100, 0.35) 0%, transparent 55%),
+                radial-gradient(ellipse at 40% 80%, rgba(90, 55, 150, 0.3) 0%, transparent 50%);
             z-index: 0;
             pointer-events: none;
         }
         .login-box {
             position: relative;
             z-index: 1;
-            background: rgba(20, 6, 36, 0.7);
+            background: rgba(15, 12, 30, 0.75);
             backdrop-filter: blur(15px);
-            border: 1px solid rgba(212, 168, 83, 0.5);
+            border: 1px solid rgba(200, 190, 220, 0.5);
             border-radius: 24px;
             padding: 3rem 2.5rem;
             text-align: center;
-            box-shadow: 0 0 60px rgba(160, 120, 200, 0.4);
+            box-shadow: 0 0 60px rgba(120, 100, 180, 0.45);
             width: 90%;
             max-width: 420px;
             margin: 2rem auto;
         }
         .login-box h2 {
-            color: #e8c97a;
+            color: #d8d0f0;
             font-weight: 600;
             letter-spacing: 0.08em;
             margin-bottom: 2rem;
-            text-shadow: 0 0 15px rgba(232,201,122,0.7);
+            text-shadow: 0 0 15px rgba(200, 180, 230, 0.8);
             font-size: 1.6rem;
             font-family: 'Cinzel', Georgia, serif;
         }
@@ -55,9 +55,9 @@
             width: 100%;
             padding: 14px 20px;
             background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(180,150,210,0.5);
+            border: 1px solid rgba(160, 150, 200, 0.55);
             border-radius: 30px;
-            color: #e8c97a;
+            color: #d8d0f0;
             font-family: 'Cinzel', serif;
             font-size: 1rem;
             text-align: center;
@@ -66,8 +66,8 @@
         .login-box button {
             margin-top: 1.8rem;
             background: transparent;
-            border: 1px solid #e8c97a;
-            color: #e8c97a;
+            border: 1px solid #d8d0f0;
+            color: #d8d0f0;
             padding: 12px 36px;
             font-family: 'Cinzel', serif;
             font-size: 0.9rem;
@@ -78,11 +78,11 @@
             text-transform: uppercase;
         }
         .login-box button:hover {
-            background: rgba(232,201,122,0.15);
-            box-shadow: 0 0 25px rgba(232,201,122,0.6);
+            background: rgba(200, 180, 230, 0.18);
+            box-shadow: 0 0 25px rgba(200, 180, 240, 0.7);
         }
         .error {
-            color: #c0a0a0;
+            color: #b0a8c0;
             font-size: 0.8rem;
             margin-top: 1rem;
             display: none;
@@ -101,9 +101,7 @@
         <div class="error" id="errorMsg">The seal remains unbroken…</div>
     </div>
 
-    <!-- Весь дневник внутри template – скрыт, пока не введут пароль -->
     <template id="diaryTemplate">
-        <!--  КОД ДНЕВНИКА (ваш полный HTML)  -->
         <!DOCTYPE html>
         <html lang="en">
         <head>
@@ -115,21 +113,21 @@
             <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
             <style>
                 :root {
-                    --deep-purple: #140624;
-                    --gold: #d4a853;
-                    --gold-light: #e8c97a;
-                    --pale-lilac: #b095ce;
+                    --deep-indigo: #0f0b24;
+                    --accent: #d0cae8;
+                    --accent-light: #e0daf2;
+                    --pale-accent: #b8b0d0;
                     --card-bg: #fefcf8;
                     --text-dark: #2c2416;
                     --text-medium: #3b3225;
-                    --card-shadow: 0 4px 24px rgba(10, 4, 20, 0.35), 0 1px 4px rgba(10, 4, 20, 0.2);
+                    --card-shadow: 0 4px 24px rgba(8, 4, 20, 0.4), 0 1px 4px rgba(8, 4, 20, 0.2);
                 }
                 * { margin: 0; padding: 0; box-sizing: border-box; }
                 html { scroll-behavior: smooth; }
                 body {
                     font-family: 'Cormorant Garamond', 'EB Garamond', Georgia, serif;
                     min-height: 100vh;
-                    background: var(--deep-purple);
+                    background: var(--deep-indigo);
                     display: flex;
                     justify-content: center;
                     align-items: flex-start;
@@ -147,11 +145,11 @@
                     content: '';
                     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
                     background:
-                        radial-gradient(ellipse at 25% 20%, rgba(100, 50, 140, 0.4) 0%, transparent 55%),
-                        radial-gradient(ellipse at 65% 60%, rgba(60, 30, 110, 0.35) 0%, transparent 55%),
-                        radial-gradient(ellipse at 40% 75%, rgba(130, 80, 170, 0.3) 0%, transparent 50%),
-                        radial-gradient(ellipse at 70% 15%, rgba(160, 110, 190, 0.25) 0%, transparent 50%),
-                        radial-gradient(ellipse at 50% 50%, rgba(30, 10, 50, 0.7) 0%, transparent 70%);
+                        radial-gradient(ellipse at 25% 20%, rgba(55, 35, 110, 0.5) 0%, transparent 55%),
+                        radial-gradient(ellipse at 65% 60%, rgba(35, 25, 90, 0.45) 0%, transparent 55%),
+                        radial-gradient(ellipse at 40% 75%, rgba(70, 50, 130, 0.4) 0%, transparent 50%),
+                        radial-gradient(ellipse at 70% 15%, rgba(80, 60, 150, 0.35) 0%, transparent 50%),
+                        radial-gradient(ellipse at 50% 50%, rgba(15, 8, 40, 0.8) 0%, transparent 70%);
                     z-index: 0; pointer-events: none;
                     animation: bgPulse 12s ease-in-out infinite;
                 }
@@ -169,17 +167,34 @@
                 }
                 .header {
                     text-align: center;
-                    padding: 28px 30px 20px;
+                    padding: 36px 30px 32px;
+                    margin-bottom: 16px;
                     position: relative; z-index: 2;
                 }
-                .header-title {
+                .header-title-block {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 6px;
+                }
+                .header-main {
                     font-family: 'Cinzel', Georgia, serif;
                     font-weight: 600;
-                    font-size: clamp(1.6rem, 3.5vw, 2.2rem);
-                    color: var(--gold-light);
-                    letter-spacing: 0.06em;
-                    text-shadow: 0 0 30px rgba(232, 201, 122, 0.5), 0 0 60px rgba(200, 160, 80, 0.3), 0 2px 4px rgba(0, 0, 0, 0.5);
-                    line-height: 1.3; margin: 0; text-transform: uppercase;
+                    font-size: clamp(1.8rem, 4vw, 2.4rem);
+                    letter-spacing: 0.12em;
+                    color: var(--accent-light);
+                    text-shadow: 0 0 30px rgba(210,200,240,0.6), 0 0 60px rgba(180,160,220,0.4);
+                    text-transform: uppercase;
+                    line-height: 1.2;
+                }
+                .header-sub {
+                    font-family: 'Courier New', 'JetBrains Mono', 'Fira Code', monospace;
+                    font-weight: 400;
+                    font-size: 1rem;
+                    letter-spacing: 0.15em;
+                    color: #b8b0d0;
+                    text-shadow: 0 0 8px rgba(200,190,230,0.3);
+                    margin-top: 4px;
                 }
                 .tab-nav-container {
                     display: flex;
@@ -197,9 +212,9 @@
                     font-family: 'Cinzel', Georgia, serif;
                     font-size: 0.82rem; font-weight: 500; letter-spacing: 0.07em;
                     padding: 12px 26px;
-                    border: 1px solid rgba(180, 150, 210, 0.35);
-                    background: rgba(20, 8, 40, 0.75);
-                    color: #c8b8dc;
+                    border: 1px solid rgba(160, 150, 210, 0.4);
+                    background: rgba(15, 10, 35, 0.8);
+                    color: #c4bce0;
                     cursor: pointer;
                     border-radius: 30px;
                     transition: all 0.4s ease;
@@ -208,29 +223,29 @@
                     flex-shrink: 0;
                 }
                 .tab-btn:hover {
-                    border-color: rgba(210, 180, 140, 0.6);
-                    color: #e0d0ee;
-                    background: rgba(30, 12, 50, 0.85);
-                    box-shadow: 0 0 20px rgba(150, 110, 190, 0.3);
+                    border-color: rgba(200, 185, 230, 0.7);
+                    color: #e2dcf5;
+                    background: rgba(20, 15, 45, 0.9);
+                    box-shadow: 0 0 20px rgba(130, 110, 180, 0.35);
                 }
                 .tab-btn.active {
-                    border-color: var(--gold-light);
-                    color: var(--gold-light);
-                    background: rgba(35, 14, 55, 0.9);
-                    box-shadow: 0 0 22px rgba(212, 168, 83, 0.4), inset 0 0 15px rgba(212, 168, 83, 0.08);
+                    border-color: var(--accent);
+                    color: var(--accent-light);
+                    background: rgba(25, 18, 55, 0.95);
+                    box-shadow: 0 0 22px rgba(190, 175, 220, 0.5), inset 0 0 15px rgba(190,175,220,0.1);
                     font-weight: 600;
                 }
                 .more-tabs-wrapper { position: relative; display: none; }
                 .more-btn { padding: 12px 22px; font-size: 1rem; letter-spacing: 0.1em; }
                 .more-dropdown {
                     position: absolute; right: 0; top: 100%; margin-top: 8px;
-                    background: rgba(18, 6, 35, 0.95);
+                    background: rgba(12, 8, 30, 0.95);
                     backdrop-filter: blur(12px);
-                    border: 1px solid rgba(212, 168, 83, 0.4);
+                    border: 1px solid rgba(190, 180, 220, 0.45);
                     border-radius: 18px; padding: 10px;
                     display: flex; flex-direction: column; gap: 6px;
                     min-width: 190px;
-                    box-shadow: 0 12px 32px rgba(0,0,0,0.6), 0 0 0 1px rgba(180,150,210,0.2);
+                    box-shadow: 0 12px 32px rgba(0,0,0,0.7), 0 0 0 1px rgba(160,150,210,0.25);
                     opacity: 0; visibility: hidden;
                     transform: translateY(-6px);
                     transition: opacity 0.25s ease, visibility 0.25s, transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
@@ -238,19 +253,19 @@
                 }
                 .more-dropdown.open { opacity: 1; visibility: visible; transform: translateY(0); }
                 .more-dropdown .tab-btn {
-                    background: transparent; border: 1px solid rgba(180,150,210,0.2);
-                    color: #d9cce8; text-align: left; padding: 10px 18px; border-radius: 14px; width: 100%;
+                    background: transparent; border: 1px solid rgba(160,150,210,0.25);
+                    color: #d4cce8; text-align: left; padding: 10px 18px; border-radius: 14px; width: 100%;
                 }
-                .more-dropdown .tab-btn:hover { background: rgba(40, 20, 60, 0.8); border-color: rgba(210,180,140,0.5); color: #f0e5ff; }
+                .more-dropdown .tab-btn:hover { background: rgba(30,20,60,0.8); border-color: rgba(200,185,230,0.55); color: #ece5ff; }
                 .more-dropdown .tab-btn.active {
-                    border-color: var(--gold-light); color: var(--gold-light); background: rgba(35, 14, 55, 0.9);
+                    border-color: var(--accent); color: var(--accent-light); background: rgba(25,18,55,0.9);
                 }
                 .content-wrapper {
                     background: var(--card-bg);
                     border-radius: 16px;
                     box-shadow: var(--card-shadow);
                     margin: 8px 6px 30px;
-                    border: 1px solid rgba(180, 150, 210, 0.2);
+                    border: 1px solid rgba(170, 160, 210, 0.25);
                     overflow: visible;
                 }
                 .content-inner { padding: 36px 38px; min-height: 300px; position: relative; }
@@ -259,86 +274,116 @@
                 .section-title {
                     font-family: 'Cinzel', Georgia, serif;
                     font-size: 0.85rem; letter-spacing: 0.08em;
-                    color: #5a4a6a; margin-bottom: 16px;
+                    color: #4a4060; margin-bottom: 16px;
                     text-transform: uppercase;
-                    border-bottom: 1px solid rgba(180,150,210,0.2);
+                    border-bottom: 1px solid rgba(170,160,210,0.2);
                     padding-bottom: 8px;
                 }
                 .program-day {
                     text-align: center; margin-bottom: 24px;
-                    font-family: 'Cinzel', serif; font-size: 1rem; color: #7a6a8a;
+                    font-family: 'Cinzel', serif; font-size: 1rem; color: #6a5c80;
                     letter-spacing: 0.05em;
                 }
-                .program-day strong { color: #4a2e5e; font-size: 1.4rem; display: block; margin-bottom: 4px; }
+                .program-day strong { color: #3a2c5e; font-size: 1.4rem; display: block; margin-bottom: 4px; }
                 .practice-block { margin-bottom: 32px; }
                 .practice-name {
                     font-family: 'Cinzel', Georgia, serif;
-                    font-size: 0.8rem; letter-spacing: 0.1em; color: #4a3a5e; margin-bottom: 12px; text-transform: uppercase;
+                    font-size: 0.8rem; letter-spacing: 0.1em; color: #4a3c60; margin-bottom: 12px; text-transform: uppercase;
                 }
                 .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; }
                 .stat-card {
-                    background: rgba(245, 240, 250, 0.5); border-radius: 16px;
+                    background: rgba(240, 235, 250, 0.55); border-radius: 16px;
                     padding: 18px 14px; text-align: center;
-                    border: 1px solid rgba(180, 150, 210, 0.2);
+                    border: 1px solid rgba(170,160,210,0.25);
                     box-shadow: 0 4px 12px rgba(0,0,0,0.05);
                     transition: transform 0.3s ease, box-shadow 0.3s ease;
                 }
                 .stat-card:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.08); }
                 .stat-value {
                     font-family: 'Cinzel', Georgia, serif;
-                    font-size: 2.4rem; font-weight: 700; color: #4a2e5e; line-height: 1.1;
-                    margin-bottom: 6px; text-shadow: 0 0 12px rgba(180, 150, 210, 0.4);
+                    font-size: 2.4rem; font-weight: 700; color: #3a2c5e; line-height: 1.1;
+                    margin-bottom: 6px; text-shadow: 0 0 12px rgba(160,150,210,0.5);
                 }
-                .stat-label { font-family: 'Cinzel', Georgia, serif; font-size: 0.7rem; letter-spacing: 0.08em; color: #7a6a8a; text-transform: uppercase; }
-                .stat-desc { font-size: 0.65rem; color: #8a7a95; margin-top: 4px; letter-spacing: 0.03em; }
-                .progress-bar { width: 100%; height: 5px; background: rgba(180,150,210,0.15); border-radius: 5px; margin-top: 10px; overflow: hidden; }
-                .progress-fill { height: 100%; background: linear-gradient(90deg, #b8a0d2, #9b7ec4); border-radius: 5px; transition: width 0.5s ease; }
+                .stat-label { font-family: 'Cinzel', Georgia, serif; font-size: 0.7rem; letter-spacing: 0.08em; color: #6a5c80; text-transform: uppercase; }
+                .stat-desc { font-size: 0.65rem; color: #7a6c90; margin-top: 4px; letter-spacing: 0.03em; }
+                .progress-bar { width: 100%; height: 5px; background: rgba(160,150,210,0.15); border-radius: 5px; margin-top: 10px; overflow: hidden; }
+                .progress-fill { height: 100%; background: linear-gradient(90deg, #b0a0d8, #9080c0); border-radius: 5px; transition: width 0.5s ease; }
                 .mini-calendar-detailed { display: flex; flex-direction: column; gap: 10px; margin-top: 12px; }
-                .calendar-row { display: flex; align-items: center; gap: 12px; font-size: 0.9rem; color: #5a4a6a; }
-                .cal-day-label { width: 75px; font-family: 'Cinzel', serif; font-weight: 600; font-size: 0.75rem; letter-spacing: 0.03em; }
+                .calendar-row { display: flex; align-items: center; gap: 12px; font-size: 0.9rem; color: #4a4060; }
+                .cal-day-label { width: 75px; font-family: 'Cinzel', serif; font-weight: 600; font-size: 0.75rem; letter-spacing: 0.03em; color: #4a4060; }
                 .cal-icon { font-size: 1.3rem; width: 28px; text-align: center; }
                 .cal-icon.done { color: #7a9e7a; text-shadow: 0 0 6px rgba(130,180,130,0.4); }
                 .cal-icon.missed { color: #b09595; text-shadow: 0 0 6px rgba(180,140,140,0.3); }
-                .cal-note { font-size: 0.7rem; color: #8a7a95; font-style: italic; }
-                .streak-info { text-align: center; font-size: 0.7rem; color: #8a7a95; letter-spacing: 0.04em; margin-top: 12px; }
-                .sub-tab-nav {
-                    display: flex; gap: 12px; margin-bottom: 28px; flex-wrap: wrap; align-items: center;
-                    border-bottom: 1px solid rgba(180, 150, 210, 0.15); padding-bottom: 12px;
+                .cal-note { font-size: 0.7rem; color: #7a6c90; font-style: italic; }
+                .streak-info { text-align: center; font-size: 0.7rem; color: #7a6c90; letter-spacing: 0.04em; margin-top: 12px; }
+
+                /* Новый контейнер для суб-навигации с прокруткой */
+                .sub-tab-scroll {
+                    display: flex;
+                    align-items: center;
+                    margin-bottom: 28px;
                 }
+                .scroll-arrow {
+                    background: none;
+                    border: none;
+                    color: #7a6c90;
+                    font-size: 1.5rem;
+                    cursor: pointer;
+                    padding: 0 8px;
+                    transition: color 0.2s;
+                    flex-shrink: 0;
+                }
+                .scroll-arrow:hover { color: #b8b0d0; }
+                .sub-tab-nav {
+                    display: flex;
+                    gap: 12px;
+                    flex-wrap: nowrap;
+                    overflow-x: auto;
+                    scroll-behavior: smooth;
+                    -webkit-overflow-scrolling: touch;
+                    scrollbar-width: none;
+                    align-items: center;
+                    flex: 1;
+                    border-bottom: 1px solid rgba(170,160,210,0.15);
+                    padding-bottom: 12px;
+                }
+                .sub-tab-nav::-webkit-scrollbar { display: none; }
                 .sub-tab-btn {
                     font-family: 'Cinzel', Georgia, serif; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.06em;
-                    padding: 10px 24px; border: 1px solid transparent; background: transparent; color: #8a7a95;
+                    padding: 10px 24px; border: 1px solid transparent; background: transparent; color: #7a6c90;
                     cursor: pointer; border-radius: 26px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
                     display: flex; align-items: center; gap: 8px;
+                    white-space: nowrap;
+                    flex-shrink: 0;
                 }
-                .sub-tab-btn:hover { color: #5a4a6e; background: rgba(200, 180, 220, 0.08); }
+                .sub-tab-btn:hover { color: #5a4c6e; background: rgba(180,170,210,0.1); }
                 .sub-tab-btn.active {
-                    color: #3e2a52; background: rgba(220, 200, 240, 0.18);
-                    border-color: rgba(180, 150, 210, 0.35); font-weight: 600; box-shadow: 0 2px 10px rgba(150, 110, 190, 0.1);
+                    color: #3a2c52; background: rgba(200,190,230,0.2);
+                    border-color: rgba(170,160,210,0.4); font-weight: 600; box-shadow: 0 2px 10px rgba(130,110,180,0.15);
                 }
                 .sub-tab-icon { font-size: 0.9rem; opacity: 0.7; transition: opacity 0.3s; }
                 .sub-tab-btn.active .sub-tab-icon { opacity: 1; }
                 .sub-panel { display: none; }
                 .sub-panel.active { display: block; }
-                .day-entry { margin-bottom: 36px; padding-bottom: 32px; border-bottom: 1px solid rgba(180, 150, 200, 0.2); }
+                .day-entry { margin-bottom: 36px; padding-bottom: 32px; border-bottom: 1px solid rgba(170,160,210,0.2); }
                 .day-entry:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
                 .day-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
                 .day-date {
-                    font-family: 'Cinzel', serif; font-weight: 700; font-size: 1.1rem; color: #5a3e7c;
-                    background: rgba(120, 90, 160, 0.06); padding: 6px 18px; border-radius: 24px;
-                    letter-spacing: 0.04em; border: 1px solid rgba(150, 120, 180, 0.15);
+                    font-family: 'Cinzel', serif; font-weight: 700; font-size: 1.1rem; color: #4a3680;
+                    background: rgba(120,100,160,0.08); padding: 6px 18px; border-radius: 24px;
+                    letter-spacing: 0.04em; border: 1px solid rgba(150,130,190,0.2);
                 }
                 .day-status {
                     font-family: 'Cinzel', serif; font-size: 0.72rem; font-weight: 500;
                     letter-spacing: 0.06em; padding: 5px 16px; border-radius: 18px;
                     text-transform: uppercase; white-space: normal;
                 }
-                .status-done { background: rgba(130, 180, 130, 0.12); color: #4a7a5e; border: 1px solid rgba(130, 180, 130, 0.25); }
-                .status-not { background: rgba(200, 160, 140, 0.1); color: #8a6a5a; border: 1px solid rgba(200, 160, 140, 0.25); }
-                .day-divider { flex: 1; height: 1px; background: linear-gradient(90deg, rgba(160, 130, 180, 0.45), transparent); min-width: 30px; }
+                .status-done { background: rgba(130,180,130,0.12); color: #4a7a5e; border: 1px solid rgba(130,180,130,0.3); }
+                .status-not { background: rgba(200,160,140,0.1); color: #8a6a5a; border: 1px solid rgba(200,160,140,0.3); }
+                .day-divider { flex: 1; height: 1px; background: linear-gradient(90deg, rgba(150,140,190,0.5), transparent); min-width: 30px; }
                 .day-tldr {
-                    margin-bottom: 16px; padding: 12px 18px; background: rgba(220, 210, 240, 0.08);
-                    border-left: 3px solid rgba(150, 120, 180, 0.35); border-radius: 6px;
+                    margin-bottom: 16px; padding: 12px 18px; background: rgba(220,210,240,0.1);
+                    border-left: 3px solid rgba(160,150,200,0.4); border-radius: 6px;
                     font-size: 0.95rem; color: #4a3a5e; display: flex; align-items: flex-start; gap: 10px; line-height: 1.5;
                 }
                 .tldr-icon { font-size: 0.85rem; opacity: 0.65; flex-shrink: 0; margin-top: 1px; }
@@ -347,13 +392,13 @@
                 .day-text p { margin-bottom: 14px; text-indent: 1.2em; }
                 .day-text p:first-child { text-indent: 0; }
                 .reflection-block {
-                    margin: 20px 0 28px; padding: 18px 20px; background: rgba(180, 150, 200, 0.05);
-                    border-left: 3px solid rgba(160, 130, 180, 0.35); border-radius: 6px; color: #4a3a5a;
+                    margin: 20px 0 28px; padding: 18px 20px; background: rgba(200,190,230,0.06);
+                    border-left: 3px solid rgba(160,150,200,0.4); border-radius: 6px; color: #4a3a5a;
                 }
                 .reflection-block p { margin-bottom: 10px; text-indent: 0 !important; }
                 .reflection-label {
                     font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 0.1em;
-                    text-transform: uppercase; color: #8a7a9a; display: block; margin-bottom: 8px; font-style: normal;
+                    text-transform: uppercase; color: #8a7c9a; display: block; margin-bottom: 8px; font-style: normal;
                 }
                 .habit-grid {
                     display: grid;
@@ -362,19 +407,19 @@
                     margin-top: 8px;
                 }
                 .habit-day {
-                    background: rgba(245, 240, 250, 0.35);
+                    background: rgba(240,235,250,0.4);
                     border-radius: 14px;
                     padding: 12px 8px;
                     text-align: center;
-                    border: 1px solid rgba(180, 150, 210, 0.15);
+                    border: 1px solid rgba(170,160,210,0.2);
                     transition: background 0.2s;
                 }
-                .habit-day:hover { background: rgba(245, 240, 250, 0.6); }
+                .habit-day:hover { background: rgba(240,235,250,0.65); }
                 .habit-date {
                     font-family: 'Cinzel', serif;
                     font-size: 0.7rem;
                     letter-spacing: 0.04em;
-                    color: #5a4a6a;
+                    color: #5a4c70;
                     margin-bottom: 6px;
                 }
                 .habit-icon { font-size: 1.6rem; line-height: 1; margin-bottom: 4px; }
@@ -382,20 +427,20 @@
                 .habit-icon.missed { color: #8a6a5a; }
                 .habit-note {
                     font-size: 0.65rem;
-                    color: #8a7a95;
+                    color: #7a6c90;
                     font-style: italic;
                     line-height: 1.3;
                     margin-top: 4px;
                 }
                 .meta-note {
                     font-size: 0.85rem;
-                    color: #7a6a8a;
+                    color: #6a5c80;
                     font-style: italic;
                     margin-bottom: 1rem;
                     line-height: 1.5;
                     padding: 8px 14px;
-                    background: rgba(200, 180, 220, 0.1);
-                    border-left: 3px solid rgba(160, 140, 190, 0.3);
+                    background: rgba(200,190,230,0.12);
+                    border-left: 3px solid rgba(160,150,200,0.35);
                     border-radius: 6px;
                 }
                 button, .tab-btn, .sub-tab-btn, .tab-btn:hover, .sub-tab-btn:hover,
@@ -408,21 +453,21 @@
                     text-align: center; padding: 3rem 1rem; color: #4a3a5e; font-family: 'Cinzel', Georgia, serif;
                 }
                 .placeholder-practice .symbol {
-                    font-size: 2.8rem; color: var(--gold-light); display: block; margin-bottom: 1rem;
-                    text-shadow: 0 0 12px rgba(232,201,122,0.6);
+                    font-size: 2.8rem; color: var(--accent-light); display: block; margin-bottom: 1rem;
+                    text-shadow: 0 0 12px rgba(210,200,240,0.7);
                 }
                 .placeholder-practice p { font-size: 1.1rem; color: #5a4a6a; letter-spacing: 0.06em; }
-                .placeholder-practice .sub { font-size: 0.85rem; color: #8a7a95; margin-top: 0.6rem; font-style: italic; }
+                .placeholder-practice .sub { font-size: 0.85rem; color: #7a6c90; margin-top: 0.6rem; font-style: italic; }
                 .sigil-section {
                     margin: 1.8rem 0 1.4rem;
                     padding-left: 1rem;
-                    border-left: 2px solid rgba(200, 170, 140, 0.4);
+                    border-left: 2px solid rgba(180,160,210,0.45);
                 }
                 .sigil-section h4 {
                     font-family: 'Cinzel', Georgia, serif;
                     font-size: 0.9rem;
                     letter-spacing: 0.08em;
-                    color: #5a3e7c;
+                    color: #4a3680;
                     margin-bottom: 0.5rem;
                     text-transform: uppercase;
                     display: flex;
@@ -432,30 +477,31 @@
                 .sigil-section h4 .section-icon { font-size: 1rem; opacity: 0.8; }
                 .sigil-quote {
                     margin: 0.8rem 0; padding: 0.6rem 1.2rem;
-                    background: rgba(200, 180, 220, 0.1);
-                    border-left: 2px solid var(--gold-light);
+                    background: rgba(200,190,230,0.12);
+                    border-left: 2px solid var(--accent);
                     border-radius: 6px; font-style: italic; color: #4a3a5a;
                 }
                 .sigil-link {
                     display: inline-block; margin: 0.6rem 0 1rem;
                     font-family: 'Cinzel', Georgia, serif; font-size: 0.85rem;
-                    color: var(--gold); text-decoration: none;
-                    border-bottom: 1px dashed var(--gold);
+                    color: var(--accent); text-decoration: none;
+                    border-bottom: 1px dashed var(--accent);
                     transition: color 0.3s, border-color 0.3s;
                 }
-                .sigil-link:hover { color: var(--gold-light); border-bottom-color: var(--gold-light); }
+                .sigil-link:hover { color: var(--accent-light); border-bottom-color: var(--accent-light); }
                 @media (max-width: 600px) {
                     .content-inner { padding: 24px 18px; }
                     .tab-btn { padding: 10px 16px; font-size: 0.7rem; }
                     .sub-tab-btn { padding: 8px 16px; font-size: 0.68rem; }
-                    .header { padding: 18px 14px 12px; }
-                    .header-title { font-size: 1.3rem; }
                     .day-text { font-size: 1.1rem; }
                     .day-tldr { font-size: 0.85rem; }
                     .stat-value { font-size: 2rem; }
                     .more-dropdown { min-width: 160px; right: -10px; }
                     .placeholder-practice .symbol { font-size: 2.2rem; }
                     .habit-grid { grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); }
+                    .header { padding: 28px 16px 24px; margin-bottom: 8px; }
+                    .header-main { font-size: 1.6rem; }
+                    .header-sub { font-size: 0.9rem; }
                 }
             </style>
         </head>
@@ -465,7 +511,10 @@
 
             <div class="main-container">
                 <header class="header">
-                    <h1 class="header-title">Magical Diary<br>of Soror Ap'ya 222</h1>
+                    <div class="header-title-block">
+                        <span class="header-main">MAGICAL DIARY</span>
+                        <span class="header-sub">Soror Ap'ya 222</span>
+                    </div>
                 </header>
 
                 <div class="tab-nav-container" id="tabNavContainer">
@@ -487,45 +536,50 @@
 
                 <div class="content-wrapper">
                     <div class="content-inner">
+                        <!-- Home Tab -->
                         <div class="tab-panel active" id="panel-home">
                             <div class="section-title">Grimoire Dashboard</div>
-                            <div class="program-day"><strong>Day 22</strong> of the program</div>
-                            <div class="practice-block"><div class="practice-name">☽ Meditation</div>
+                            <div class="program-day"><strong>Day 50</strong> of the program</div>
+                            <div class="practice-block">
+                                <div class="practice-name">☽ Meditation</div>
                                 <div class="stats-grid">
-                                    <div class="stat-card"><div class="stat-value">19</div><div class="stat-label">Current Streak</div><div class="stat-desc">consecutive days without a miss</div></div>
-                                    <div class="stat-card"><div class="stat-value">20 / 22</div><div class="stat-label">Completed</div><div class="stat-desc">total days</div></div>
-                                    <div class="stat-card"><div class="stat-value">90.9%</div><div class="stat-label">Completion Rate</div><div class="progress-bar"><div class="progress-fill" style="width: 90.9%;"></div></div></div>
-                                    <div class="stat-card"><div class="stat-value">19</div><div class="stat-label">Best Streak</div><div class="stat-desc">longest unbroken chain</div></div>
-                                </div>
-                            </div>
-                            <div class="practice-block"><div class="practice-name">✧ Metamorphosis</div>
-                                <div class="stats-grid">
-                                    <div class="stat-card"><div class="stat-value">10</div><div class="stat-label">Current Streak</div><div class="stat-desc">consecutive days completed</div></div>
-                                    <div class="stat-card"><div class="stat-value">17 / 22</div><div class="stat-label">Completed</div><div class="stat-desc">total days</div></div>
-                                    <div class="stat-card"><div class="stat-value">77.3%</div><div class="stat-label">Completion Rate</div><div class="progress-bar"><div class="progress-fill" style="width: 77.3%;"></div></div></div>
-                                    <div class="stat-card"><div class="stat-value">10</div><div class="stat-label">Best Streak</div><div class="stat-desc">longest unbroken chain</div></div>
+                                    <div class="stat-card"><div class="stat-value">47</div><div class="stat-label">Current Streak</div><div class="stat-desc">consecutive days without a miss</div></div>
+                                    <div class="stat-card"><div class="stat-value">48 / 50</div><div class="stat-label">Completed</div><div class="stat-desc">total days</div></div>
+                                    <div class="stat-card"><div class="stat-value">96%</div><div class="stat-label">Completion Rate</div><div class="progress-bar"><div class="progress-fill" style="width: 96%;"></div></div></div>
+                                    <div class="stat-card"><div class="stat-value">47</div><div class="stat-label">Best Streak</div><div class="stat-desc">longest unbroken chain</div></div>
                                 </div>
                             </div>
                             <div class="section-title">Meditation · Last 7 Days</div>
                             <div class="mini-calendar-detailed">
-                                <div class="calendar-row"><span class="cal-day-label">June 1</span><span class="cal-icon done">🌕</span><span class="cal-note">done</span></div>
-                                <div class="calendar-row"><span class="cal-day-label">June 2</span><span class="cal-icon done">🌕</span><span class="cal-note">done</span></div>
-                                <div class="calendar-row"><span class="cal-day-label">June 3</span><span class="cal-icon done">🌕</span><span class="cal-note">done</span></div>
-                                <div class="calendar-row"><span class="cal-day-label">June 4</span><span class="cal-icon done">🌕</span><span class="cal-note">done</span></div>
-                                <div class="calendar-row"><span class="cal-day-label">June 5</span><span class="cal-icon done">🌕</span><span class="cal-note">done</span></div>
-                                <div class="calendar-row"><span class="cal-day-label">June 6</span><span class="cal-icon done">🌕</span><span class="cal-note">done</span></div>
-                                <div class="calendar-row"><span class="cal-day-label">June 7</span><span class="cal-icon done">🌕</span><span class="cal-note">done</span></div>
+                                <div class="calendar-row"><span class="cal-day-label">June 29</span><span class="cal-icon done">🌕</span><span class="cal-note">done</span></div>
+                                <div class="calendar-row"><span class="cal-day-label">June 30</span><span class="cal-icon done">🌕</span><span class="cal-note">done</span></div>
+                                <div class="calendar-row"><span class="cal-day-label">July 1</span><span class="cal-icon done">🌕</span><span class="cal-note">done</span></div>
+                                <div class="calendar-row"><span class="cal-day-label">July 2</span><span class="cal-icon done">🌕</span><span class="cal-note">done</span></div>
+                                <div class="calendar-row"><span class="cal-day-label">July 3</span><span class="cal-icon done">🌕</span><span class="cal-note">done</span></div>
+                                <div class="calendar-row"><span class="cal-day-label">July 4</span><span class="cal-icon done">🌕</span><span class="cal-note">done</span></div>
+                                <div class="calendar-row"><span class="cal-day-label">July 5</span><span class="cal-icon done">🌕</span><span class="cal-note">done</span></div>
                             </div>
                             <div class="streak-info">Streak builds with each consecutive done day and resets to 0 after any miss.</div>
                         </div>
 
+                        <!-- Meditation Tab -->
                         <div class="tab-panel" id="panel-meditation">
-                            <div class="sub-tab-nav">
-                                <button class="sub-tab-btn active" data-subtab="week1"><span class="sub-tab-icon">🌑</span> Week 1</button>
-                                <button class="sub-tab-btn" data-subtab="week2"><span class="sub-tab-icon">🌒</span> Week 2</button>
-                                <button class="sub-tab-btn" data-subtab="week3"><span class="sub-tab-icon">🌓</span> Week 3</button>
+                            <div class="sub-tab-scroll">
+                                <button class="scroll-arrow left-arrow" aria-label="Scroll left">‹</button>
+                                <div class="sub-tab-nav">
+                                    <button class="sub-tab-btn active" data-subtab="week1"><span class="sub-tab-icon">🌑</span> Week 1</button>
+                                    <button class="sub-tab-btn" data-subtab="week2"><span class="sub-tab-icon">🌒</span> Week 2</button>
+                                    <button class="sub-tab-btn" data-subtab="week3"><span class="sub-tab-icon">🌓</span> Week 3</button>
+                                    <button class="sub-tab-btn" data-subtab="week4"><span class="sub-tab-icon">🌔</span> Week 4</button>
+                                    <button class="sub-tab-btn" data-subtab="week5"><span class="sub-tab-icon">🌕</span> Week 5</button>
+                                    <button class="sub-tab-btn" data-subtab="week6"><span class="sub-tab-icon">🌖</span> Week 6</button>
+                                    <button class="sub-tab-btn" data-subtab="week7"><span class="sub-tab-icon">🌗</span> Week 7</button>
+                                </div>
+                                <button class="scroll-arrow right-arrow" aria-label="Scroll right">›</button>
                             </div>
+                            <!-- Week 1-7 panels unchanged except for the new scroll container -->
                             <div class="sub-panel active" id="sub-panel-week1">
+                                <!-- content unchanged -->
                                 <article class="day-entry"><div class="day-header"><span class="day-date">May 17</span><span class="day-status status-not">meditation not done</span><span class="day-divider"></span></div><div class="day-tldr"><span class="tldr-icon">✦</span><span class="tldr-text">Day of the call, no meditation — just tuned in on the new moon and first day of my cycle.</span></div><div class="day-text"><p>The day of our call. Interesting that it's day 1 of the program, a new moon, and day 1 of my menstrual cycle. I didn't start practicing that day, just tuned in.</p></div></article>
                                 <article class="day-entry"><div class="day-header"><span class="day-date">May 18</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-tldr"><span class="tldr-icon">✦</span><span class="tldr-text">First real meditation after a long break: struggled with the inner "journalist" and timer anxiety, but reached 30 minutes with a brief deep trance.</span></div><div class="day-text"><p>This is a meditation after a pretty long break. There were 2 attempts. In the 1st one I was shocked at how loud the world around me was and got super irritated (even though I live in a quiet apartment in a quiet neighborhood), couldn't continue.</p><p>The second one actually worked and I did 30 minutes. I was in a deep trance for about 5–7 minutes. The main difficulty — I kept thinking about the diary and what to write down, almost every moment was like "and this moment I'll describe in the diary like this." I tried to negotiate with the "journalist," convince him that I wouldn't write anything except "sat for 30 minutes" so he'd shut up, but he only believed me for about 5 minutes and then carried on again.</p><p>I worried that something was wrong with the timer and that I'd meditate for longer than I should, checked the time once during the meditation (but at least it was a cool time — 1:11, and because of that I was a little less upset at my weakness). I got irritated that I was concentrating way too hard on the breath, on the belly movement, it was against my will, and I thought the whole point of this meditation was not to get stuck on anything, breath included.</p><p>Towards the end of the meditation (the last 5 minutes or so) some random thoughts started coming. They were neutral, just some nonsense, but I was even surprised that this stuff was getting into my head and I was catching and stopping it pretty late. By then it was already half-sleep. And to be more honest, I stayed there out of laziness because it was easier to spend the last minutes that I already didn't like that way.</p></div></article>
                                 <article class="day-entry"><div class="day-header"><span class="day-date">May 19</span><span class="day-status status-not">meditation not done</span><span class="day-divider"></span></div><div class="day-tldr"><span class="tldr-icon">✦</span><span class="tldr-text">Only 15 minutes; perfectionism about technique vs. familiar "vibrations" made me quit — decided to wait for mentor feedback.</span></div><div class="day-text"><p>This meditation only lasted 15 minutes. I meditated during the day and was planning to just do a new session in the evening for 30 minutes, since that time I'd cut it short. But because of perfectionism I couldn't, and I also couldn't fall asleep properly that day, only towards morning.</p><p>The perfectionism goes like this: during meditation I'm used to tuning into some kind of "vibration" and kind of dissolving into it (in practice it feels like various subtle, quiet sounds — several of them, around 1 to 5 — which you can't hear in an ordinary state; if you catch one and stay with it, it's easy to slip into a trance). I was in a trance, but then I thought that tuning into this vibration and being in that trance is cheating, because there's not much difference between getting stuck on a thought and getting stuck on a vibration. So I decided to meditate without it, and that already felt a bit like torture — this, by the way, is what made the 1st attempt cut off at 15 minutes.</p><p>I managed to stop the first strong impulse to quit, a couple of minutes passed, the second one came, and I didn't have the strength to stop it. In the end I got confused about how I'm supposed to meditate and what's even required of me. I decided, until I get your feedback this week, to just keep meditating the way I usually do.</p><p>Also, I meditate with my eyes closed. I know you're supposed to do it with them open, but I've almost never done it that way before and I'm a bit afraid of it because of the presumed difficulty, so I haven't even tried + I remember Diana said she did the program with her eyes closed and that it's fine. I decided not to think about it until your feedback.</p></div></article>
@@ -535,7 +589,9 @@
                                 <article class="day-entry"><div class="day-header"><span class="day-date">May 23</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>At first it was a neutral meditation, then I started feeling anxiety that someone might unexpectedly come into my room while I'm in such a vulnerable state (I wasn't home alone), because of that I looked at the time after 20 minutes. And even 2 or 3 times. And overall, after the meditation the anxiety intensified and I became a bit furious in general. I think it's a reaction to a boundary violation or a desire to expand and strengthen them. Because when I think about plans regarding this, I calm down a little.</p></div></article>
                                 <article class="day-entry"><div class="day-header"><span class="day-date">May 24</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>The impulse to check the time came up (about 5 not very strong impulses), but I overcame them. There was a moment I hadn't encountered in the days before: I caught a semi-trance state, and there was a possibility to go deeper, to dive in, but that's when the timer became an obstacle again, only differently: "what's the point of going into a deep state, the timer will just go off and ruin everything anyway." I felt the timer almost with my skin, almost as a physical obstruction, it even visualized itself as a barrier. After that there were also thoughts that if a meditation has a timer, then it's fake, and nothing good can come of it. That was just a thought, but overall it was a fairly easy, good meditation, and its distinctive feature was that in it I didn't torture myself as much as in the past days, it was even a rest, a refuge, and here's from what:</p><p>So basically, as soon as I more or less started to cope with this pattern of torment from the timer and the external observer in meditation, it formed in my life at a complexity ratio of 1 to 1000. And now I'm writing from inside this process. In short, now I'm suffering not just from the timer, but from all of time in general, and I've got not just an observer of my meditation (the mentor), but a physical observer in the house. Because of this I can't fall asleep, actually it's been 2 nights already. In general insomnia isn't very typical for me, I suffer from it maybe a couple of nights a year. But I'm afraid of insomnia and consider sleep the most important thing in life, and that seems to complicate everything as well.</p><p>Right now it all feels like that wild desire to check the timer in the first days of the program, only there's no timer and nothing to check, and the observer also can't really do anything to me, this is all a game of my psyche that I can't get out of for now. It's just that in meditation I kind of learned "not to check," but here I still can't understand what exactly I'm not supposed to check.</p><p>Just for the record, I don't have OCD. This is a reaction to a trigger — to time limits and to the presence of an observer in a space I consider intimate.</p><p>I understand this entry might look quite intense, but I hope it won't cause fear for me. I'll cope with this and I don't need any special help. For me this is far from the highest level of intensity I've faced. I'm describing everything as it is because it affects my practice and seems important for understanding my situation.</p></div></article>
                             </div>
+                            <!-- Week 2-7 panels remain the same, just wrapped in the new scroll container -->
                             <div class="sub-panel" id="sub-panel-week2">
+                                <!-- content unchanged -->
                                 <article class="day-entry"><div class="day-header"><span class="day-date">May 25</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Attempt 1, no good. About 13 minutes. I was doing it in not the most comfortable conditions. Lots of noise, not enough privacy, because of that I couldn't take it, looked at the time and couldn't continue anymore. I knew it was all gonna be hard, but I was trying so hard to practice meditating in crappy conditions. There was this pleasant sound of a humming fridge, would've been nice to meditate to it, but I had this anxiety like "why tune into it if it's about to stop humming", so that didn't save me.</p><p>Attempt 2. A pleasant, good meditation. Spent a lot of time in a meditative, half-trance state, slipping into an 80% trance for moments. Felt kind towards the journalist 'cause I think I got his essence. Catching the "vibration" was super easy, usually I have to listen closely, kinda strain for it, but here it was almost like a normal sound (still disappeared when coming out of the meditative state though). Wanted to check the timer, but the impulses weren't too strong. There were bird sounds, a bit distracting, but still not too bad.</p></div></article>
                                 <article class="day-entry"><div class="day-header"><span class="day-date">May 26</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Normal, ordinary meditation. Don't even feel like writing anything.</p></div></article>
                                 <article class="day-entry"><div class="day-header"><span class="day-date">May 27</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Well, fine. Haven't been checking the time all this week. Wanted to, but not too much. The mind was chaotic — couldn't focus on anything, just bounced from vibration to vibration. It was a meditative state, but a low-quality one.</p></div></article>
@@ -544,6 +600,7 @@
                                 <article class="day-entry"><div class="day-header"><span class="day-date">May 30</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Didn't hear the timer and accidentally meditated for 50 minutes. I was meditating at night, towards morning. And through my closed eyelids I noticed it had gotten way too light, so that's how I decided to check the timer and ended the meditation.</p></div></article>
                                 <article class="day-entry"><div class="day-header"><span class="day-date">May 31</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Pleasant meditation, but more of a foggy feeling than clarity. Today is already the 3rd day in a row with minor unpleasant physical sensations. Something on my face was itching. But overall it didn't bother me and I didn't try to scratch.</p></div></article>
                             </div>
+                            <!-- include week3...week7 panels identical to previous version -->
                             <div class="sub-panel" id="sub-panel-week3">
                                 <article class="day-entry"><div class="day-header"><span class="day-date">June 1</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Normal meditation. But afterward I realized I had lost interest in tracking various distraction phenomena during the process. Some distraction happens — like swallowing saliva — and I just don’t care. It seems I don’t even notice most of these distractions anymore. I don’t know how to relate to this or how it affects the quality of meditation. On one hand, it feels quieter in my head, the inner voices are almost gone. On the other hand, maybe I’ve just started noticing less and in reality my meditation has simply gotten worse, only I don’t know about it? Instead of the journalist voice today there was a lot of visual stuff, basically like dreams, a movie inside. I managed to pull myself out of them, but they kept appearing again and again.</p></div></article>
                                 <article class="day-entry"><div class="day-header"><span class="day-date">June 2</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Usual meditation. There were quite bright “vibrations,” but no deep trance. The journalist is almost completely gone. At some point my nose started itching really strongly. I would like to figure out this phenomenon. Maybe it anticipates a new level of relaxation, itches to attract attention, who knows. Of course when I come out of meditation it stops itching. I can’t say it prevents me from meditating, but it starts itching very intensely.</p><p>Right now I’m afraid I’ve fallen into a trap of mental dullness. And I’ve been there for several days already. Sweet degradation. Still don’t know how to get out of it. I think now that I no longer care about the timer, the journalist, etc., I have the right to give myself more difficult tasks in meditation. And right now that is — to keep a sharp mind and not allow fog.</p></div></article>
@@ -553,15 +610,62 @@
                                 <article class="day-entry"><div class="day-header"><span class="day-date">June 6</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Meditated 30 minutes.</p></div></article>
                                 <article class="day-entry"><div class="day-header"><span class="day-date">June 7</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>I had little motivation for meditation and I’m even afraid of losing it. The initial charge is behind me. Despite the feeling of losing motivation, meditation already feels like a routine. About the meditation: it wasn’t bad, but it wasn’t strong stable concentration either. The only expectation I had of myself was to stay in place and not get too involved in thoughts. The whole meditation felt like I was trying to seat myself in place instead of running after time. I even visualized huge hands pressing me against the wall so I would stay put. Maybe thanks to this I felt the so-called grounding for the first time during this marathon. Usually during meditation I’m clearly somewhere outside myself. Again there was strong itching on the tip of the right side of my nose, which seemed to crawl along a line toward the outer corner of the eye. This is not ordinary itching. It is very intense and precise, but I can’t call it unpleasant. There were also beginnings of it symmetrically on the other side of the nose, but it didn’t spread across the cheek there.</p></div></article>
                             </div>
+                            <div class="sub-panel" id="sub-panel-week4">
+                                <article class="day-entry"><div class="day-header"><span class="day-date">June 8</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>I meditated for 30 minutes. Lost the notes.</p></div></article>
+                                <article class="day-entry"><div class="day-header"><span class="day-date">June 9</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>I meditated for 30 minutes. Lost the notes.</p></div></article>
+                                <article class="day-entry"><div class="day-header"><span class="day-date">June 10</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>I meditated for 30 minutes. Lost the notes.</p></div></article>
+                                <article class="day-entry"><div class="day-header"><span class="day-date">June 11</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>I decided to choose a point in the body to focus on in order to train grounding. I simply picked the one that currently drew more attention. At first it was a point in the chest, but then the stomach area started attracting my attention more, and I settled on that. It feels like a little balloon tied by a string to something — the balloon is “me,” the string is concentration, and whatever it’s tied to is the body. About five minutes before the end, there was strong itching in my nose again.</p></div></article>
+                                <article class="day-entry"><div class="day-header"><span class="day-date">June 12</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Regular meditation. Hard to describe.</p></div></article>
+                                <article class="day-entry"><div class="day-header"><span class="day-date">June 13</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>At first it was a terrible, disgusting meditation. I couldn’t pull myself together because I was extremely exhausted and my body hurt. When I was in my usual meditative mode and heard the inner sounds, it was also awful. I’m generally already tired of them, but today they were simply repulsive. A nasty whine of astral mosquitoes. When I concentrated on the body, the sound disappeared, but concentrating on the body was also difficult because of how painful it felt today. Then everything started getting better. I summoned the “journalist” into my meditation and he entertained me a little, which made the meditation less unbearable. Then the familiar facial itch appeared, but this time on the other side, and it became the most pleasant point for concentration possible. After that the meditation straightened out and flowed easily. The rest of the time passed unnoticed. And after the meditation I felt much better.</p></div></article>
+                                <article class="day-entry"><div class="day-header"><span class="day-date">June 14</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Regular meditation. It passed easily, almost unnoticed. There was strong itching in my nose — the same as for the last several days. I can probably describe it as very weak and frequent electric shocks. I used this itch as the object of concentration. At one point during the meditation it became very hot.</p></div></article>
+                            </div>
+                            <div class="sub-panel" id="sub-panel-week5">
+                                <article class="day-entry"><div class="day-header"><span class="day-date">June 15</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>It was hard to choose one object for concentration and stay on it. During this meditation it changed about five times. There was the nose itch again. I heard that “deafening mosquito vibration” again, but it wasn’t as loud and I handled it normally.</p></div></article>
+                                <article class="day-entry"><div class="day-header"><span class="day-date">June 16</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>At first it was very difficult because of exhaustion; it was unpleasant to be in the body. Then I managed to concentrate on the tip of my nose and it became pleasant and quite easy. Towards the end the familiar itch appeared again. I can probably use it as a timer now.</p></div></article>
+                                <article class="day-entry"><div class="day-header"><span class="day-date">June 17</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>There were a lot of meaningless everyday thoughts.</p></div></article>
+                                <article class="day-entry"><div class="day-header"><span class="day-date">June 18</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Overall it was fairly easy to focus, and my head was quite clear and empty, but a mosquito bothered me a lot. I was afraid it would bite me, so I opened my eyes a couple of times. For the first time in the last several days I decided to listen to the vibrations. I had no fear of anything unpleasant. A few days ago one of them was deafeningly disgusting; today the same one sounded like some kind of melody.</p></div></article>
+                                <article class="day-entry"><div class="day-header"><span class="day-date">June 19</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>I meditated during the day. It’s always hard for me, but this time I managed 30 minutes. On one hand, I easily entered the meditative state and my head felt light, but there was a feeling of rush and I kept thinking about the timer. I couldn’t slow myself down and ground myself. I looked at it a couple of times. I spent the last minute with my eyes open. I managed to meditate with open eyes. And after the timer went off, I didn’t want to come out of the meditation — I stayed in it for a few extra minutes.</p></div></article>
+                                <article class="day-entry"><div class="day-header"><span class="day-date">June 20</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Lightness in my head and easy to meditate, but at one point my stomach hurt (for a moment, but quite sharply). It threw me off and I looked at the timer. It seems the timer thing is starting to degrade for me.</p></div></article>
+                                <article class="day-entry"><div class="day-header"><span class="day-date">June 21</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>I meditated for 30 minutes.</p></div></article>
+                            </div>
+                            <div class="sub-panel" id="sub-panel-week6">
+                                <article class="day-entry"><div class="day-header"><span class="day-date">June 22</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>I sat down to meditate in a terrible state (overload, strong nausea, headache), but after the meditation everything passed. Even after about 10 minutes it already felt much better. It was easy to meditate, but there were random thoughts that I fell into for periods of time.</p></div></article>
+                                <article class="day-entry"><div class="day-header"><span class="day-date">June 23</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>It was very difficult to meditate, especially the first 10 minutes. My breathing was distracting — it was shallow and pronounced. Then it got easier. The strong nose itch returned, and when I concentrated on it, it felt like my nose was vibrating.</p></div></article>
+                                <article class="day-entry"><div class="day-header"><span class="day-date">June 24</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Normal meditation. But breathing kept taking a lot of attention again. Overall my head felt light and empty.</p></div></article>
+                                <article class="day-entry"><div class="day-header"><span class="day-date">June 25</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>This was a heavy meditation. At first everything started well, but then breathing became intrusive again. Too pronounced, deep, and it felt like I wouldn’t be able to breathe at all without paying attention to it. And when I made an effort to concentrate on something else, I really started to suffocate. There were almost no thoughts. When I deliberately tried to concentrate on breathing, it got even worse. Towards the end my legs went numb, which is very unusual for me. Even some time after the meditation my leg still hurts. And it was very hard to sit through the whole session. Apparently I have a high level of mental tension these days.</p></div></article>
+                                <article class="day-entry"><div class="day-header"><span class="day-date">June 26</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>The beginning of the meditation was not bad. The intrusive breathing was there, but I managed to keep it in the background and meditate more or less normally. But during the meditation it became more intrusive, and it was already very hard to be with all of it.</p></div></article>
+                                <article class="day-entry"><div class="day-header"><span class="day-date">June 27</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Normal meditation. Shallow breathing interfered, but less than the previous days, and overall I mostly managed to keep it in the background. And it seems it becomes a problem when I go deeper into meditation. The breathing spasm is mostly on the exhale. A couple of times I got strongly distracted and looked at the timer because a fly landed on me and crawled around…</p></div></article>
+                                <article class="day-entry"><div class="day-header"><span class="day-date">June 28</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Quite a relaxed meditation. I mostly managed to “do nothing.” Breathing was a bit tense, but it didn’t interfere with meditating.</p></div></article>
+                            </div>
+                            <div class="sub-panel" id="sub-panel-week7">
+                                <article class="day-entry"><div class="day-header"><span class="day-date">June 29</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>At first it was normal, but boring. Towards the end breathing started to tense me up again. I looked at the timer two minutes before the end.</p></div></article>
+                                <article class="day-entry"><div class="day-header"><span class="day-date">June 30</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>I meditated for 30 minutes. Lost the note or didn’t make one.</p></div></article>
+                                <article class="day-entry"><div class="day-header"><span class="day-date">July 1</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Overall it was a normal meditation. There were almost no thoughts, but there were several moments when I almost started suffocating. I felt a contraction in my diaphragm. But there were also moments when I didn’t feel my breathing at all.</p></div></article>
+                                <article class="day-entry"><div class="day-header"><span class="day-date">July 2</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>I meditated for 30 minutes. Didn’t find the energy to write anything. Nothing special.</p></div></article>
+                                <article class="day-entry"><div class="day-header"><span class="day-date">July 3</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>It started normally, then there were lapses into thoughts, then some minor difficulties with breathing.</p></div></article>
+                                <article class="day-entry"><div class="day-header"><span class="day-date">July 4</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Overall everything was normal, but I fell into thoughts and hypnagogic images a bit. The unusual thing was that I got hot and started sweating. It’s hot at home right now, yes, but during meditation it became much hotter. I didn’t feel my breathing at all.</p></div></article>
+                                <article class="day-entry"><div class="day-header"><span class="day-date">July 5</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>It started easily, but became harder towards the end. There was very strong itching in my nose. And again at one point it got hot and I sweated.</p></div></article>
+                            </div>
                         </div>
 
+                        <!-- Metamorphosis Tab -->
                         <div class="tab-panel" id="panel-metamorphosis">
-                            <div class="sub-tab-nav">
-                                <button class="sub-tab-btn active" data-subtab="meta-week1"><span class="sub-tab-icon">🌑</span> Week 1</button>
-                                <button class="sub-tab-btn" data-subtab="meta-week2"><span class="sub-tab-icon">🌒</span> Week 2</button>
-                                <button class="sub-tab-btn" data-subtab="meta-week3"><span class="sub-tab-icon">🌓</span> Week 3</button>
+                            <div class="sub-tab-scroll">
+                                <button class="scroll-arrow left-arrow" aria-label="Scroll left">‹</button>
+                                <div class="sub-tab-nav">
+                                    <button class="sub-tab-btn active" data-subtab="meta-week1"><span class="sub-tab-icon">🌑</span> Week 1</button>
+                                    <button class="sub-tab-btn" data-subtab="meta-week2"><span class="sub-tab-icon">🌒</span> Week 2</button>
+                                    <button class="sub-tab-btn" data-subtab="meta-week3"><span class="sub-tab-icon">🌓</span> Week 3</button>
+                                    <button class="sub-tab-btn" data-subtab="meta-week4"><span class="sub-tab-icon">🌔</span> Week 4</button>
+                                    <button class="sub-tab-btn" data-subtab="meta-week5"><span class="sub-tab-icon">🌕</span> Week 5</button>
+                                    <button class="sub-tab-btn" data-subtab="meta-week6"><span class="sub-tab-icon">🌖</span> Week 6</button>
+                                    <button class="sub-tab-btn" data-subtab="meta-week7"><span class="sub-tab-icon">🌗</span> Week 7</button>
+                                </div>
+                                <button class="scroll-arrow right-arrow" aria-label="Scroll right">›</button>
                             </div>
+                            <!-- Week 1-7 panels identical to previous version -->
                             <div class="sub-panel active" id="sub-panel-meta-week1">
+                                <div class="practice-name">Habit 1: Brushing teeth with other hand</div>
                                 <div class="habit-grid">
                                     <div class="habit-day"><div class="habit-date">May 17</div><div class="habit-icon">—</div><div class="habit-note">didn't choose</div></div>
                                     <div class="habit-day"><div class="habit-date">May 18</div><div class="habit-icon">—</div><div class="habit-note">forgot</div></div>
@@ -573,6 +677,7 @@
                                 </div>
                             </div>
                             <div class="sub-panel" id="sub-panel-meta-week2">
+                                <div class="practice-name">Habit 1: Brushing teeth with other hand</div>
                                 <div class="habit-grid">
                                     <div class="habit-day"><div class="habit-date">May 24</div><div class="habit-icon done">✅</div></div>
                                     <div class="habit-day"><div class="habit-date">May 25</div><div class="habit-icon done">✅</div></div>
@@ -586,6 +691,7 @@
                                 <div class="reflection-block"><span class="reflection-label">/ reflection /</span><p>Began to feel irritation and resistance from the meaninglessness, although I deliberately chose something as meaningless as possible and that was the point. A desire arose to choose a normal metamorphosis, but removing this meaningless one seems wrong, it should stay.</p></div>
                             </div>
                             <div class="sub-panel" id="sub-panel-meta-week3">
+                                <div class="practice-name">Habit 1: Brushing teeth with other hand</div>
                                 <div class="meta-note">⚠️ I forgot to mark each day, but I feel I’ve been doing it automatically with my left hand, or I remember mid‑process and switch hands. Not entirely sure.</div>
                                 <div class="habit-grid">
                                     <div class="habit-day"><div class="habit-date">June 1</div><div class="habit-icon done">✅</div></div>
@@ -597,8 +703,80 @@
                                     <div class="habit-day"><div class="habit-date">June 7</div><div class="habit-icon done">✅</div></div>
                                 </div>
                             </div>
+                            <div class="sub-panel" id="sub-panel-meta-week4">
+                                <div class="practice-name">Habit 1: Brushing teeth with other hand</div>
+                                <div class="meta-note">⚠️ Quality uncertain – performed inconsistently.</div>
+                                <div class="habit-grid">
+                                    <div class="habit-day"><div class="habit-date">June 8</div><div class="habit-icon">∼</div></div>
+                                    <div class="habit-day"><div class="habit-date">June 9</div><div class="habit-icon">∼</div></div>
+                                    <div class="habit-day"><div class="habit-date">June 10</div><div class="habit-icon">∼</div></div>
+                                    <div class="habit-day"><div class="habit-date">June 11</div><div class="habit-icon">∼</div></div>
+                                    <div class="habit-day"><div class="habit-date">June 12</div><div class="habit-icon">∼</div></div>
+                                    <div class="habit-day"><div class="habit-date">June 13</div><div class="habit-icon">∼</div></div>
+                                    <div class="habit-day"><div class="habit-date">June 14</div><div class="habit-icon">∼</div></div>
+                                </div>
+                            </div>
+                            <div class="sub-panel" id="sub-panel-meta-week5">
+                                <div class="practice-name">Habit 1: Brushing teeth with other hand</div>
+                                <div class="meta-note">⚠️ Quality uncertain – performed inconsistently.</div>
+                                <div class="habit-grid">
+                                    <div class="habit-day"><div class="habit-date">June 15</div><div class="habit-icon">∼</div></div>
+                                    <div class="habit-day"><div class="habit-date">June 16</div><div class="habit-icon">∼</div></div>
+                                    <div class="habit-day"><div class="habit-date">June 17</div><div class="habit-icon">∼</div></div>
+                                    <div class="habit-day"><div class="habit-date">June 18</div><div class="habit-icon">∼</div></div>
+                                    <div class="habit-day"><div class="habit-date">June 19</div><div class="habit-icon">∼</div></div>
+                                    <div class="habit-day"><div class="habit-date">June 20</div><div class="habit-icon">∼</div></div>
+                                    <div class="habit-day"><div class="habit-date">June 21</div><div class="habit-icon">∼</div></div>
+                                </div>
+                            </div>
+                            <div class="sub-panel" id="sub-panel-meta-week6">
+                                <div class="practice-name">Habit 1: Brushing teeth with other hand</div>
+                                <div class="habit-grid">
+                                    <div class="habit-day"><div class="habit-date">June 22</div><div class="habit-icon done">✅</div></div>
+                                    <div class="habit-day"><div class="habit-date">June 23</div><div class="habit-icon done">✅</div></div>
+                                    <div class="habit-day"><div class="habit-date">June 24</div><div class="habit-icon done">✅</div></div>
+                                    <div class="habit-day"><div class="habit-date">June 25</div><div class="habit-icon done">✅</div></div>
+                                    <div class="habit-day"><div class="habit-date">June 26</div><div class="habit-icon done">✅</div></div>
+                                    <div class="habit-day"><div class="habit-date">June 27</div><div class="habit-icon done">✅</div></div>
+                                    <div class="habit-day"><div class="habit-date">June 28</div><div class="habit-icon done">✅</div></div>
+                                </div>
+                                <div class="practice-name" style="margin-top: 20px;">Habit 2: Taste (alcohol)</div>
+                                <div class="day-text"><p>I couldn’t find anything better for this task than to choose the taste of alcohol. It is truly disgusting to me both in taste and because of the bad associations it carries. Besides, the alcohol I have at home is Cahors. It’s a special ritual wine used in the Russian Orthodox Church during the liturgy as a symbol of the blood of Jesus. On top of that, I also have somewhat tense relations with Christianity. Or rather, just a certain dislike. In short, I made the perfect choice of taste :) I will try it as one drop on the tip of my finger once a day.</p></div>
+                                <div class="habit-grid">
+                                    <div class="habit-day"><div class="habit-date">June 22</div><div class="habit-icon done">✅</div></div>
+                                    <div class="habit-day"><div class="habit-date">June 23</div><div class="habit-icon done">✅</div></div>
+                                    <div class="habit-day"><div class="habit-date">June 24</div><div class="habit-icon done">✅</div></div>
+                                    <div class="habit-day"><div class="habit-date">June 25</div><div class="habit-icon done">✅</div></div>
+                                    <div class="habit-day"><div class="habit-date">June 26</div><div class="habit-icon done">✅</div></div>
+                                    <div class="habit-day"><div class="habit-date">June 27</div><div class="habit-icon done">✅</div></div>
+                                    <div class="habit-day"><div class="habit-date">June 28</div><div class="habit-icon done">✅</div></div>
+                                </div>
+                            </div>
+                            <div class="sub-panel" id="sub-panel-meta-week7">
+                                <div class="practice-name">Habit 1: Brushing teeth with other hand</div>
+                                <div class="habit-grid">
+                                    <div class="habit-day"><div class="habit-date">June 29</div><div class="habit-icon done">✅</div></div>
+                                    <div class="habit-day"><div class="habit-date">June 30</div><div class="habit-icon done">✅</div></div>
+                                    <div class="habit-day"><div class="habit-date">July 1</div><div class="habit-icon missed">✗</div></div>
+                                    <div class="habit-day"><div class="habit-date">July 2</div><div class="habit-icon missed">✗</div></div>
+                                    <div class="habit-day"><div class="habit-date">July 3</div><div class="habit-icon done">✅</div></div>
+                                    <div class="habit-day"><div class="habit-date">July 4</div><div class="habit-icon done">✅</div></div>
+                                    <div class="habit-day"><div class="habit-date">July 5</div><div class="habit-icon missed">✗</div></div>
+                                </div>
+                                <div class="practice-name" style="margin-top: 20px;">Habit 2: Taste (alcohol)</div>
+                                <div class="habit-grid">
+                                    <div class="habit-day"><div class="habit-date">June 29</div><div class="habit-icon done">✅</div></div>
+                                    <div class="habit-day"><div class="habit-date">June 30</div><div class="habit-icon done">✅</div></div>
+                                    <div class="habit-day"><div class="habit-date">July 1</div><div class="habit-icon missed">✗</div></div>
+                                    <div class="habit-day"><div class="habit-date">July 2</div><div class="habit-icon missed">✗</div></div>
+                                    <div class="habit-day"><div class="habit-date">July 3</div><div class="habit-icon done">✅</div></div>
+                                    <div class="habit-day"><div class="habit-date">July 4</div><div class="habit-icon done">✅</div></div>
+                                    <div class="habit-day"><div class="habit-date">July 5</div><div class="habit-icon missed">✗</div></div>
+                                </div>
+                            </div>
                         </div>
 
+                        <!-- Sigil Tab -->
                         <div class="tab-panel" id="panel-sigil">
                             <article class="day-entry">
                                 <div class="day-header"><span class="day-date">May 31</span><span class="day-status status-done">sigil created</span><span class="day-divider"></span></div>
@@ -610,12 +788,17 @@
                                     <div class="sigil-section"><h4><span class="section-icon">✦</span> Future Layers</h4><p>In the future, I might make new layers of the cyber‑temple, which could be accessed through certain click combinations on the page or through secret codes that need to be entered.</p></div>
                                 </div>
                             </article>
+                            <article class="day-entry">
+                                <div class="day-header"><span class="day-date">July 3</span><span class="day-status status-done">paper sigils</span><span class="day-divider"></span></div>
+                                <div class="day-text">
+                                    <p>Made 3 paper sigils using the method from The Chaos Protocols.</p>
+                                </div>
+                            </article>
                         </div>
 
                         <div class="tab-panel" id="panel-dreamwork">
                             <div class="placeholder-practice"><span class="symbol">✧</span><p>Dreamwork</p><p class="sub">— awaits your words —</p></div>
                         </div>
-
                         <div class="tab-panel" id="panel-divination">
                             <div class="placeholder-practice"><span class="symbol">✦</span><p>Divination</p><p class="sub">— awaits your words —</p></div>
                         </div>
@@ -726,19 +909,36 @@
                     })();
 
                     (function() {
-                        const allSubBtns = document.querySelectorAll('.sub-tab-btn');
-                        allSubBtns.forEach(btn => {
-                            btn.addEventListener('click', () => {
-                                const subtab = btn.dataset.subtab;
-                                const parent = btn.closest('.tab-panel');
-                                if (!parent) return;
-                                const subBtns = parent.querySelectorAll('.sub-tab-btn');
-                                const subPanels = parent.querySelectorAll('.sub-panel');
-                                subBtns.forEach(b => b.classList.remove('active'));
-                                subPanels.forEach(p => p.classList.remove('active'));
-                                btn.classList.add('active');
-                                const targetPanel = document.getElementById(`sub-panel-${subtab}`);
-                                if (targetPanel) targetPanel.classList.add('active');
+                        // Sub-tab navigation with scroll arrows
+                        document.querySelectorAll('.sub-tab-scroll').forEach(scrollContainer => {
+                            const nav = scrollContainer.querySelector('.sub-tab-nav');
+                            const leftArrow = scrollContainer.querySelector('.left-arrow');
+                            const rightArrow = scrollContainer.querySelector('.right-arrow');
+                            if (!nav || !leftArrow || !rightArrow) return;
+
+                            const scrollAmount = 200;
+                            leftArrow.addEventListener('click', () => {
+                                nav.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+                            });
+                            rightArrow.addEventListener('click', () => {
+                                nav.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                            });
+
+                            // Handle sub-tab button clicks
+                            const subBtns = nav.querySelectorAll('.sub-tab-btn');
+                            subBtns.forEach(btn => {
+                                btn.addEventListener('click', () => {
+                                    const subtab = btn.dataset.subtab;
+                                    const parent = btn.closest('.tab-panel');
+                                    if (!parent) return;
+                                    const allSubBtns = parent.querySelectorAll('.sub-tab-btn');
+                                    const allSubPanels = parent.querySelectorAll('.sub-panel');
+                                    allSubBtns.forEach(b => b.classList.remove('active'));
+                                    allSubPanels.forEach(p => p.classList.remove('active'));
+                                    btn.classList.add('active');
+                                    const targetPanel = document.getElementById(`sub-panel-${subtab}`);
+                                    if (targetPanel) targetPanel.classList.add('active');
+                                });
                             });
                         });
                     })();
@@ -761,9 +961,7 @@
                 passwordInput.value = '';
                 return;
             }
-            // Берём содержимое template и заменяем им весь документ
             const clone = template.content.cloneNode(true);
-            // Очищаем body и вставляем клонированный дневник
             document.body.innerHTML = '';
             document.body.appendChild(clone);
         }
