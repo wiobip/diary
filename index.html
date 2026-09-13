@@ -167,8 +167,26 @@
                     padding: 20px;
                     position: relative;
                     overflow-x: hidden;
-                    cursor: none;
                     margin: 0;
+                }
+                /* ============================================================
+                   CURSOR CONTROL
+                   - Desktop (fine pointer + hover): hide default cursor, use sparkle cursor.
+                   - Touch devices (no hover / coarse pointer): keep default cursor,
+                     completely hide the sparkle cursor canvas.
+                   ============================================================ */
+                @media (hover: hover) and (pointer: fine) {
+                    body { cursor: none; }
+                    button, .tab-btn, .sub-tab-btn, .tab-btn:hover, .sub-tab-btn:hover,
+                    .more-btn, .more-btn:hover, .scroll-arrow, [role="tab"], [role="button"] {
+                        cursor: none !important;
+                    }
+                }
+                @media (hover: none), (pointer: coarse) {
+                    body, button, .tab-btn, .sub-tab-btn, .more-btn, .scroll-arrow, a, [role="button"] {
+                        cursor: auto !important;
+                    }
+                    #sparkle-cursor-canvas { display: none !important; }
                 }
                 #sparkle-canvas {
                     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -476,8 +494,6 @@
                     border-left: 3px solid rgba(160,150,200,0.35);
                     border-radius: 6px;
                 }
-                button, .tab-btn, .sub-tab-btn, .tab-btn:hover, .sub-tab-btn:hover,
-                .more-btn, .more-btn:hover, [role="tab"], [role="button"] { cursor: none !important; }
                 #sparkle-cursor-canvas {
                     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
                     z-index: 9999; pointer-events: none;
@@ -538,8 +554,10 @@
                     body { padding: 10px; }
                     .content-inner { padding: 22px 14px; }
                     .tab-btn { padding: 9px 14px; font-size: 0.68rem; letter-spacing: 0.05em; }
-                    .sub-tab-btn { padding: 8px 14px; font-size: 0.66rem; }
-                    .scroll-arrow { font-size: 1.2rem; padding: 0 4px; }
+                    .scroll-arrow { display: none; }
+                    .sub-tab-scroll { margin-bottom: 20px; }
+                    .sub-tab-nav { padding-bottom: 14px; gap: 8px; }
+                    .sub-tab-btn { padding: 10px 18px; font-size: 0.72rem; gap: 6px; }
                     .day-text { font-size: 1.05rem; line-height: 1.75; }
                     .day-tldr { font-size: 0.82rem; padding: 10px 14px; }
                     .stat-value { font-size: 1.9rem; }
@@ -565,7 +583,7 @@
                 }
                 @media (max-width: 380px) {
                     .tab-btn { padding: 8px 11px; font-size: 0.62rem; }
-                    .sub-tab-btn { padding: 7px 12px; font-size: 0.62rem; gap: 5px; }
+                    .sub-tab-btn { padding: 8px 13px; font-size: 0.66rem; }
                     .header-main { font-size: 1.25rem; }
                     .day-text { font-size: 1rem; }
                     .stats-grid { grid-template-columns: 1fr; }
@@ -1256,6 +1274,30 @@
             </div>
 
             <script>
+                /* ============================================================
+                   HAPTIC FEEDBACK
+                   Small vibrations on mobile. iOS Safari doesn't support
+                   navigator.vibrate, so calls are silently ignored there.
+                   ============================================================ */
+                function haptic(pattern) {
+                    if (!('vibrate' in navigator)) return;
+                    try {
+                        if (Array.isArray(pattern)) {
+                            navigator.vibrate(pattern);
+                        } else {
+                            navigator.vibrate(pattern);
+                        }
+                    } catch (e) { /* ignore */ }
+                }
+                const HAPTIC = {
+                    mainTab: 12,       // switching a top-level tab
+                    subTab: 10,        // switching a week / sub-tab
+                    arrow: 8,          // scroll arrow click
+                    moreBtn: 10,       // "···" button
+                    scrollEnd: 5       // tiny tap when swipe-scrolling stops
+                };
+
+                // Background starfield (runs everywhere)
                 (function() {
                     const canvas = document.getElementById('sparkle-canvas');
                     const ctx = canvas.getContext('2d');
@@ -1304,8 +1346,18 @@
                     resize(); initParticles(); animate();
                 })();
 
+                /* ============================================================
+                   SPARKLE CURSOR
+                   Only initializes if the device actually has a fine pointer
+                   (mouse/trackpad). Pure touch devices (phones, tablets) skip
+                   this module entirely, and CSS already hides the canvas.
+                   ============================================================ */
                 (function() {
+                    const hasCursor = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+                    if (!hasCursor) return;
+
                     const canvas = document.getElementById('sparkle-cursor-canvas');
+                    if (!canvas) return;
                     const ctx = canvas.getContext('2d');
                     let width, height, mouseX=-200, mouseY=-200; const trail = []; let particles = []; const MAX=150, LIFE=45;
                     const palette = ['#f9e6cf','#f5d7b0','#ebcfa0','#e8d5f5','#d9c0f0','#cbb5e8','#fce1e8','#fdd0dc','#ffffff','#f7f3f0'];
@@ -1316,9 +1368,6 @@
                     window.addEventListener('mousemove', e => {
                         mouseX=e.clientX; mouseY=e.clientY; overCard=isOverContentWrapper(mouseX,mouseY);
                         trail.push({x:mouseX, y:mouseY, age:0}); if (trail.length>35) trail.shift();
-                    });
-                    window.addEventListener('touchmove', e => {
-                        if (e.touches.length) { mouseX=e.touches[0].clientX; mouseY=e.touches[0].clientY; overCard=isOverContentWrapper(mouseX,mouseY); trail.push({x:mouseX, y:mouseY, age:0}); if (trail.length>35) trail.shift(); }
                     });
                     function spawn() {
                         if (overCard) return; let cnt=3;
@@ -1333,62 +1382,118 @@
                             if (size>1.6) { const cx=p.x, cy=p.y; ctx.beginPath(); ctx.moveTo(cx,cy-size); ctx.lineTo(cx+size*0.3,cy-size*0.2); ctx.lineTo(cx+size*0.8,cy); ctx.lineTo(cx+size*0.3,cy+size*0.2); ctx.lineTo(cx,cy+size); ctx.lineTo(cx-size*0.3,cy+size*0.2); ctx.lineTo(cx-size*0.8,cy); ctx.lineTo(cx-size*0.3,cy-size*0.2); ctx.closePath(); ctx.fill(); }
                             else { ctx.beginPath(); ctx.arc(p.x,p.y,size*0.8,0,Math.PI*2); ctx.fill(); } ctx.restore(); }
                         if (mouseX>0) { ctx.save(); const grd=ctx.createRadialGradient(mouseX,mouseY,1,mouseX,mouseY,14); grd.addColorStop(0,'rgba(255,245,220,0.9)'); grd.addColorStop(0.5,'rgba(240,210,180,0.4)'); grd.addColorStop(1,'rgba(200,160,200,0)'); ctx.fillStyle=grd; ctx.shadowColor='#fce5c0'; ctx.shadowBlur=18; ctx.beginPath(); ctx.arc(mouseX,mouseY,14,0,2*Math.PI); ctx.fill(); ctx.fillStyle='#fffef7'; ctx.shadowBlur=12; const s=5; ctx.beginPath(); ctx.moveTo(mouseX,mouseY-s); ctx.lineTo(mouseX+s*0.4,mouseY-s*0.3); ctx.lineTo(mouseX+s,mouseY); ctx.lineTo(mouseX+s*0.4,mouseY+s*0.3); ctx.lineTo(mouseX,mouseY+s); ctx.lineTo(mouseX-s*0.4,mouseY+s*0.3); ctx.lineTo(mouseX-s,mouseY); ctx.lineTo(mouseX-s*0.4,mouseY-s*0.3); ctx.closePath(); ctx.fill(); ctx.restore(); }
-                        }
-                        function animate() { updateParticles(); drawParticles(); requestAnimationFrame(animate); }
-                        animate();
-                    })();
+                    }
+                    function animate() { updateParticles(); drawParticles(); requestAnimationFrame(animate); }
+                    animate();
+                })();
 
-                    function bindTabEvents(btns) { btns.forEach(btn => { if (btn.classList.contains('more-btn')) return; btn.addEventListener('click', () => { const tab = btn.dataset.tab; document.querySelectorAll('.tab-btn, .more-dropdown .tab-btn').forEach(b => b.classList.remove('active')); document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active')); btn.classList.add('active'); const panel = document.getElementById(`panel-${tab}`); if (panel) panel.classList.add('active'); document.getElementById('moreDropdown')?.classList.remove('open'); }); }); }
-                    (function() {
-                        const container = document.getElementById('tabNavContainer'); const mainNav = document.getElementById('mainTabNav'); const moreWrapper = document.getElementById('moreTabsWrapper'); const moreDropdown = document.getElementById('moreDropdown'); const moreBtn = document.getElementById('moreBtn'); const sourceTabs = document.querySelectorAll('#allTabsSource .tab-btn');
-                        const tabClones = Array.from(sourceTabs).map(btn => { const c = btn.cloneNode(true); c.classList.remove('active'); return c; });
-                        function arrangeTabs() {
-                            mainNav.innerHTML=''; moreDropdown.innerHTML=''; const containerWidth = container.clientWidth; let totalWidth=0; const visible=[], hidden=[];
-                            const temp = document.createElement('div'); temp.style.cssText='display:flex;gap:6px;visibility:hidden;position:absolute;'; document.body.appendChild(temp);
-                            tabClones.forEach(clone => { const t=clone.cloneNode(true); temp.appendChild(t); const w = t.offsetWidth+6; totalWidth+=w; if (totalWidth < containerWidth-100) visible.push(clone); else hidden.push(clone); });
-                            document.body.removeChild(temp); visible.forEach(c => mainNav.appendChild(c.cloneNode(true)));
-                            if (hidden.length>0) { moreWrapper.style.display='block'; hidden.forEach(c => moreDropdown.appendChild(c.cloneNode(true))); } else moreWrapper.style.display='none';
-                            const activeTabId = document.querySelector('.tab-panel.active')?.id?.replace('panel-','');
-                            if (activeTabId) { document.querySelectorAll('.tab-btn').forEach(b => { if (b.dataset.tab===activeTabId) b.classList.add('active'); else b.classList.remove('active'); }); }
-                            bindTabEvents(document.querySelectorAll('.tab-btn'));
-                        }
-                        moreBtn.addEventListener('click', e => { e.stopPropagation(); moreDropdown.classList.toggle('open'); });
-                        document.addEventListener('click', e => { if (!moreDropdown.contains(e.target) && e.target!==moreBtn) moreDropdown.classList.remove('open'); });
-                        window.addEventListener('resize', arrangeTabs); arrangeTabs();
-                    })();
+                // Center the active subtab inside a horizontally-scrollable nav
+                function centerActiveSubTab(nav) {
+                    if (!nav) return;
+                    const active = nav.querySelector('.sub-tab-btn.active');
+                    if (!active) return;
+                    if (nav.scrollWidth <= nav.clientWidth) return;
+                    const target = active.offsetLeft - (nav.clientWidth - active.offsetWidth) / 2;
+                    nav.scrollTo({ left: Math.max(0, target), behavior: 'smooth' });
+                }
 
-                    (function() {
-                        document.querySelectorAll('.sub-tab-scroll').forEach(scrollContainer => {
-                            const nav = scrollContainer.querySelector('.sub-tab-nav');
-                            const leftArrow = scrollContainer.querySelector('.left-arrow');
-                            const rightArrow = scrollContainer.querySelector('.right-arrow');
-                            if (!nav || !leftArrow || !rightArrow) return;
+                // Attach scroll-end haptic to a sub-tab nav
+                function bindScrollHaptic(nav) {
+                    let lastLeft = nav.scrollLeft;
+                    let timer = null;
+                    nav.addEventListener('scroll', () => {
+                        clearTimeout(timer);
+                        timer = setTimeout(() => {
+                            const delta = Math.abs(nav.scrollLeft - lastLeft);
+                            if (delta > 20) {
+                                haptic(HAPTIC.scrollEnd);
+                                lastLeft = nav.scrollLeft;
+                            }
+                        }, 140);
+                    }, { passive: true });
+                }
 
-                            const scrollAmount = 200;
-                            leftArrow.addEventListener('click', () => {
-                                nav.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-                            });
-                            rightArrow.addEventListener('click', () => {
-                                nav.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-                            });
-
-                            const subBtns = nav.querySelectorAll('.sub-tab-btn');
-                            subBtns.forEach(btn => {
-                                btn.addEventListener('click', () => {
-                                    const subtab = btn.dataset.subtab;
-                                    const parent = scrollContainer.parentElement;
-                                    if (!parent) return;
-                                    const allSubBtns = nav.querySelectorAll('.sub-tab-btn');
-                                    const allSubPanels = parent.querySelectorAll(':scope > .sub-panel');
-                                    allSubBtns.forEach(b => b.classList.remove('active'));
-                                    allSubPanels.forEach(p => p.classList.remove('active'));
-                                    btn.classList.add('active');
-                                    const targetPanel = document.getElementById(`sub-panel-${subtab}`);
-                                    if (targetPanel) targetPanel.classList.add('active');
+                function bindTabEvents(btns) {
+                    btns.forEach(btn => {
+                        if (btn.classList.contains('more-btn')) return;
+                        btn.addEventListener('click', () => {
+                            haptic(HAPTIC.mainTab);
+                            const tab = btn.dataset.tab;
+                            document.querySelectorAll('.tab-btn, .more-dropdown .tab-btn').forEach(b => b.classList.remove('active'));
+                            document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+                            btn.classList.add('active');
+                            const panel = document.getElementById(`panel-${tab}`);
+                            if (panel) {
+                                panel.classList.add('active');
+                                requestAnimationFrame(() => {
+                                    panel.querySelectorAll('.sub-tab-nav').forEach(centerActiveSubTab);
                                 });
+                            }
+                            document.getElementById('moreDropdown')?.classList.remove('open');
+                        });
+                    });
+                }
+                (function() {
+                    const container = document.getElementById('tabNavContainer'); const mainNav = document.getElementById('mainTabNav'); const moreWrapper = document.getElementById('moreTabsWrapper'); const moreDropdown = document.getElementById('moreDropdown'); const moreBtn = document.getElementById('moreBtn'); const sourceTabs = document.querySelectorAll('#allTabsSource .tab-btn');
+                    const tabClones = Array.from(sourceTabs).map(btn => { const c = btn.cloneNode(true); c.classList.remove('active'); return c; });
+                    function arrangeTabs() {
+                        mainNav.innerHTML=''; moreDropdown.innerHTML=''; const containerWidth = container.clientWidth; let totalWidth=0; const visible=[], hidden=[];
+                        const temp = document.createElement('div'); temp.style.cssText='display:flex;gap:6px;visibility:hidden;position:absolute;'; document.body.appendChild(temp);
+                        tabClones.forEach(clone => { const t=clone.cloneNode(true); temp.appendChild(t); const w = t.offsetWidth+6; totalWidth+=w; if (totalWidth < containerWidth-100) visible.push(clone); else hidden.push(clone); });
+                        document.body.removeChild(temp); visible.forEach(c => mainNav.appendChild(c.cloneNode(true)));
+                        if (hidden.length>0) { moreWrapper.style.display='block'; hidden.forEach(c => moreDropdown.appendChild(c.cloneNode(true))); } else moreWrapper.style.display='none';
+                        const activeTabId = document.querySelector('.tab-panel.active')?.id?.replace('panel-','');
+                        if (activeTabId) { document.querySelectorAll('.tab-btn').forEach(b => { if (b.dataset.tab===activeTabId) b.classList.add('active'); else b.classList.remove('active'); }); }
+                        bindTabEvents(document.querySelectorAll('.tab-btn'));
+                    }
+                    moreBtn.addEventListener('click', e => { e.stopPropagation(); haptic(HAPTIC.moreBtn); moreDropdown.classList.toggle('open'); });
+                    document.addEventListener('click', e => { if (!moreDropdown.contains(e.target) && e.target!==moreBtn) moreDropdown.classList.remove('open'); });
+                    window.addEventListener('resize', arrangeTabs); arrangeTabs();
+                })();
+
+                (function() {
+                    document.querySelectorAll('.sub-tab-scroll').forEach(scrollContainer => {
+                        const nav = scrollContainer.querySelector('.sub-tab-nav');
+                        const leftArrow = scrollContainer.querySelector('.left-arrow');
+                        const rightArrow = scrollContainer.querySelector('.right-arrow');
+                        if (!nav) return;
+
+                        const scrollAmount = 200;
+                        if (leftArrow) leftArrow.addEventListener('click', () => {
+                            haptic(HAPTIC.arrow);
+                            nav.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+                        });
+                        if (rightArrow) rightArrow.addEventListener('click', () => {
+                            haptic(HAPTIC.arrow);
+                            nav.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                        });
+
+                        // Add a tiny vibration when a swipe-scroll on the sub-tab nav stops
+                        bindScrollHaptic(nav);
+
+                        const subBtns = nav.querySelectorAll('.sub-tab-btn');
+                        subBtns.forEach(btn => {
+                            btn.addEventListener('click', () => {
+                                haptic(HAPTIC.subTab);
+                                const subtab = btn.dataset.subtab;
+                                const parent = scrollContainer.parentElement;
+                                if (!parent) return;
+                                const allSubBtns = nav.querySelectorAll('.sub-tab-btn');
+                                const allSubPanels = parent.querySelectorAll(':scope > .sub-panel');
+                                allSubBtns.forEach(b => b.classList.remove('active'));
+                                allSubPanels.forEach(p => p.classList.remove('active'));
+                                btn.classList.add('active');
+                                const targetPanel = document.getElementById(`sub-panel-${subtab}`);
+                                if (targetPanel) targetPanel.classList.add('active');
+                                centerActiveSubTab(nav);
                             });
                         });
-                    })();
+                    });
+
+                    requestAnimationFrame(() => {
+                        document.querySelectorAll('.tab-panel.active .sub-tab-nav').forEach(centerActiveSubTab);
+                    });
+                })();
             </script>
         </body>
         </html>
