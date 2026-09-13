@@ -50,6 +50,8 @@
             text-shadow: 0 0 15px rgba(200, 180, 230, 0.8);
             font-size: 1.6rem;
             font-family: 'Cinzel', Georgia, serif;
+            line-height: 1.3;
+            white-space: nowrap;
         }
         .login-box input {
             width: 100%;
@@ -76,6 +78,7 @@
             cursor: pointer;
             transition: all 0.3s;
             text-transform: uppercase;
+            white-space: nowrap;
         }
         .login-box button:hover {
             background: rgba(200, 180, 230, 0.18);
@@ -89,13 +92,43 @@
             font-family: 'Cinzel', serif;
         }
         .error.show { display: block; }
+        @media (max-width: 420px) {
+            body { align-items: flex-start; padding: 1rem 0 2rem; }
+            .login-box {
+                padding: 2rem 1.1rem;
+                border-radius: 20px;
+                width: 94%;
+                margin: 1rem auto;
+            }
+            .login-box h2 {
+                font-size: 1.05rem;
+                letter-spacing: 0.02em;
+                margin-bottom: 1.5rem;
+            }
+            .login-box input {
+                padding: 12px 14px;
+                font-size: 0.9rem;
+                letter-spacing: 0.02em;
+            }
+            .login-box button {
+                padding: 11px 18px;
+                font-size: 0.7rem;
+                letter-spacing: 0.06em;
+                margin-top: 1.4rem;
+            }
+            .error { font-size: 0.72rem; }
+        }
+        @media (max-width: 340px) {
+            .login-box h2 { font-size: 0.92rem; letter-spacing: 0; }
+            .login-box button { font-size: 0.64rem; padding: 10px 14px; letter-spacing: 0.04em; }
+        }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="login-background"></div>
     <div class="login-box" id="loginBox">
-        <h2>✦ Speak the Word ✦</h2>
+        <h2>✦&nbsp;Speak the Word&nbsp;✦</h2>
         <input type="password" id="passwordInput" placeholder="Enter the password" autocomplete="off" />
         <button id="unlockBtn">Unseal Grimoire</button>
         <div class="error" id="errorMsg">The seal remains unbroken…</div>
@@ -317,7 +350,6 @@
                 .cal-note { font-size: 0.7rem; color: #7a6c90; font-style: italic; }
                 .streak-info { text-align: center; font-size: 0.7rem; color: #7a6c90; letter-spacing: 0.04em; margin-top: 12px; }
 
-                /* Новый контейнер для суб-навигации с прокруткой */
                 .sub-tab-scroll {
                     display: flex;
                     align-items: center;
@@ -396,6 +428,7 @@
                     border-left: 3px solid rgba(160,150,200,0.4); border-radius: 6px; color: #4a3a5a;
                 }
                 .reflection-block p { margin-bottom: 10px; text-indent: 0 !important; }
+                .reflection-block p:last-child { margin-bottom: 0; }
                 .reflection-label {
                     font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 0.1em;
                     text-transform: uppercase; color: #8a7c9a; display: block; margin-bottom: 8px; font-style: normal;
@@ -489,19 +522,53 @@
                     transition: color 0.3s, border-color 0.3s;
                 }
                 .sigil-link:hover { color: var(--accent-light); border-bottom-color: var(--accent-light); }
+                .rune-list {
+                    display: flex; flex-wrap: wrap; gap: 8px;
+                    margin: 14px 0 4px;
+                }
+                .rune-chip {
+                    font-family: 'Cinzel', Georgia, serif;
+                    font-size: 0.78rem; letter-spacing: 0.06em;
+                    padding: 5px 14px; border-radius: 18px;
+                    background: rgba(200,190,230,0.15);
+                    border: 1px solid rgba(160,150,200,0.35);
+                    color: #4a3a5e;
+                }
                 @media (max-width: 600px) {
-                    .content-inner { padding: 24px 18px; }
-                    .tab-btn { padding: 10px 16px; font-size: 0.7rem; }
-                    .sub-tab-btn { padding: 8px 16px; font-size: 0.68rem; }
-                    .day-text { font-size: 1.1rem; }
-                    .day-tldr { font-size: 0.85rem; }
-                    .stat-value { font-size: 2rem; }
+                    body { padding: 10px; }
+                    .content-inner { padding: 22px 14px; }
+                    .tab-btn { padding: 9px 14px; font-size: 0.68rem; letter-spacing: 0.05em; }
+                    .sub-tab-btn { padding: 8px 14px; font-size: 0.66rem; }
+                    .scroll-arrow { font-size: 1.2rem; padding: 0 4px; }
+                    .day-text { font-size: 1.05rem; line-height: 1.75; }
+                    .day-tldr { font-size: 0.82rem; padding: 10px 14px; }
+                    .stat-value { font-size: 1.9rem; }
+                    .stat-card { padding: 14px 10px; }
                     .more-dropdown { min-width: 160px; right: -10px; }
                     .placeholder-practice .symbol { font-size: 2.2rem; }
-                    .habit-grid { grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); }
-                    .header { padding: 28px 16px 24px; margin-bottom: 8px; }
-                    .header-main { font-size: 1.6rem; }
-                    .header-sub { font-size: 0.9rem; }
+                    .habit-grid { grid-template-columns: repeat(auto-fill, minmax(78px, 1fr)); gap: 8px; }
+                    .habit-day { padding: 10px 4px; }
+                    .habit-icon { font-size: 1.35rem; }
+                    .header { padding: 22px 12px 18px; margin-bottom: 4px; }
+                    .header-main { font-size: 1.45rem; letter-spacing: 0.08em; }
+                    .header-sub { font-size: 0.85rem; letter-spacing: 0.1em; }
+                    .day-header { gap: 8px; }
+                    .day-date { font-size: 0.95rem; padding: 5px 14px; }
+                    .day-status { font-size: 0.62rem; padding: 4px 10px; }
+                    .calendar-row { font-size: 0.8rem; gap: 8px; }
+                    .cal-day-label { width: 62px; font-size: 0.68rem; }
+                    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+                    .sigil-section { padding-left: 0.7rem; margin: 1.4rem 0 1rem; }
+                    .sigil-section h4 { font-size: 0.8rem; }
+                    .reflection-block { padding: 14px 14px; }
+                    .rune-chip { font-size: 0.7rem; padding: 4px 10px; }
+                }
+                @media (max-width: 380px) {
+                    .tab-btn { padding: 8px 11px; font-size: 0.62rem; }
+                    .sub-tab-btn { padding: 7px 12px; font-size: 0.62rem; gap: 5px; }
+                    .header-main { font-size: 1.25rem; }
+                    .day-text { font-size: 1rem; }
+                    .stats-grid { grid-template-columns: 1fr; }
                 }
             </style>
         </head>
@@ -530,8 +597,10 @@
                     <button class="tab-btn" data-tab="meditation">☽ Meditation</button>
                     <button class="tab-btn" data-tab="metamorphosis">✧ Metamorphosis</button>
                     <button class="tab-btn" data-tab="sigil">◈ Sigil</button>
+                    <button class="tab-btn" data-tab="runes">ᚱ Runes</button>
                     <button class="tab-btn" data-tab="dreamwork">✧ Dreamwork</button>
                     <button class="tab-btn" data-tab="divination">✦ Divination</button>
+                    <button class="tab-btn" data-tab="stories">⛧ Stories</button>
                 </div>
 
                 <div class="content-wrapper">
@@ -539,27 +608,27 @@
                         <!-- Home Tab -->
                         <div class="tab-panel active" id="panel-home">
                             <div class="section-title">Grimoire Dashboard</div>
-                            <div class="program-day"><strong>Day 85</strong> of the program</div>
+                            <div class="program-day"><strong>Day 119</strong> of the program · May 17 to September 12</div>
                             <div class="practice-block">
                                 <div class="practice-name">☽ Meditation</div>
                                 <div class="stats-grid">
-                                    <div class="stat-card"><div class="stat-value">82</div><div class="stat-label">Current Streak</div><div class="stat-desc">consecutive days without a miss</div></div>
-                                    <div class="stat-card"><div class="stat-value">83 / 85</div><div class="stat-label">Completed</div><div class="stat-desc">total days</div></div>
+                                    <div class="stat-card"><div class="stat-value">116</div><div class="stat-label">Current Streak</div><div class="stat-desc">consecutive days, personal best</div></div>
+                                    <div class="stat-card"><div class="stat-value">117 / 119</div><div class="stat-label">Completed</div><div class="stat-desc">2 misses since the start</div></div>
                                     <div class="stat-card"><div class="stat-value">98%</div><div class="stat-label">Completion Rate</div><div class="progress-bar"><div class="progress-fill" style="width: 98%;"></div></div></div>
-                                    <div class="stat-card"><div class="stat-value">82</div><div class="stat-label">Best Streak</div><div class="stat-desc">longest unbroken chain</div></div>
+                                    <div class="stat-card"><div class="stat-value">58.5 h</div><div class="stat-label">Total Time</div><div class="stat-desc">across 117 sessions</div></div>
                                 </div>
                             </div>
                             <div class="section-title">Meditation · Last 7 Days</div>
                             <div class="mini-calendar-detailed">
-                                <div class="calendar-row"><span class="cal-day-label">Aug 3</span><span class="cal-icon done">🌕</span><span class="cal-note">done</span></div>
-                                <div class="calendar-row"><span class="cal-day-label">Aug 4</span><span class="cal-icon done">🌕</span><span class="cal-note">done</span></div>
-                                <div class="calendar-row"><span class="cal-day-label">Aug 5</span><span class="cal-icon done">🌕</span><span class="cal-note">done</span></div>
-                                <div class="calendar-row"><span class="cal-day-label">Aug 6</span><span class="cal-icon done">🌕</span><span class="cal-note">done</span></div>
-                                <div class="calendar-row"><span class="cal-day-label">Aug 7</span><span class="cal-icon done">🌕</span><span class="cal-note">done</span></div>
-                                <div class="calendar-row"><span class="cal-day-label">Aug 8</span><span class="cal-icon done">🌕</span><span class="cal-note">done</span></div>
-                                <div class="calendar-row"><span class="cal-day-label">Aug 9</span><span class="cal-icon done">🌕</span><span class="cal-note">done</span></div>
+                                <div class="calendar-row"><span class="cal-day-label">Sep 12</span><span class="cal-icon done">🌕</span><span class="cal-note">done</span></div>
+                                <div class="calendar-row"><span class="cal-day-label">Sep 11</span><span class="cal-icon done">🌕</span><span class="cal-note">done</span></div>
+                                <div class="calendar-row"><span class="cal-day-label">Sep 10</span><span class="cal-icon done">🌕</span><span class="cal-note">done</span></div>
+                                <div class="calendar-row"><span class="cal-day-label">Sep 9</span><span class="cal-icon done">🌕</span><span class="cal-note">done</span></div>
+                                <div class="calendar-row"><span class="cal-day-label">Sep 8</span><span class="cal-icon done">🌕</span><span class="cal-note">done</span></div>
+                                <div class="calendar-row"><span class="cal-day-label">Sep 7</span><span class="cal-icon done">🌕</span><span class="cal-note">done</span></div>
+                                <div class="calendar-row"><span class="cal-day-label">Sep 6</span><span class="cal-icon done">🌕</span><span class="cal-note">done</span></div>
                             </div>
-                            <div class="streak-info">Streak builds with each consecutive done day and resets to 0 after any miss.</div>
+                            <div class="streak-info">Streak builds with each consecutive done day and resets to 0 after any miss. Misses so far: May 17 and May 19.</div>
                         </div>
 
                         <!-- Meditation Tab -->
@@ -567,32 +636,40 @@
                             <div class="sub-tab-scroll">
                                 <button class="scroll-arrow left-arrow" aria-label="Scroll left">‹</button>
                                 <div class="sub-tab-nav">
-                                    <button class="sub-tab-btn active" data-subtab="week1"><span class="sub-tab-icon">🌑</span> Week 1</button>
-                                    <button class="sub-tab-btn" data-subtab="week2"><span class="sub-tab-icon">🌒</span> Week 2</button>
-                                    <button class="sub-tab-btn" data-subtab="week3"><span class="sub-tab-icon">🌓</span> Week 3</button>
-                                    <button class="sub-tab-btn" data-subtab="week4"><span class="sub-tab-icon">🌔</span> Week 4</button>
-                                    <button class="sub-tab-btn" data-subtab="week5"><span class="sub-tab-icon">🌕</span> Week 5</button>
-                                    <button class="sub-tab-btn" data-subtab="week6"><span class="sub-tab-icon">🌖</span> Week 6</button>
-                                    <button class="sub-tab-btn" data-subtab="week7"><span class="sub-tab-icon">🌗</span> Week 7</button>
-                                    <button class="sub-tab-btn" data-subtab="week8"><span class="sub-tab-icon">🌘</span> Week 8</button>
-                                    <button class="sub-tab-btn" data-subtab="week9"><span class="sub-tab-icon">🌙</span> Week 9</button>
-                                    <button class="sub-tab-btn" data-subtab="week10"><span class="sub-tab-icon">🌖</span> Week 10</button>
-                                    <button class="sub-tab-btn" data-subtab="week11"><span class="sub-tab-icon">🌕</span> Week 11</button>
+                                    <button class="sub-tab-btn active" data-subtab="week17"><span class="sub-tab-icon">🌕</span> Week 17</button>
+                                    <button class="sub-tab-btn" data-subtab="week16"><span class="sub-tab-icon">🌕</span> Week 16</button>
+                                    <button class="sub-tab-btn" data-subtab="week15"><span class="sub-tab-icon">🌖</span> Week 15</button>
+                                    <button class="sub-tab-btn" data-subtab="week14"><span class="sub-tab-icon">🌗</span> Week 14</button>
+                                    <button class="sub-tab-btn" data-subtab="week13"><span class="sub-tab-icon">🌘</span> Week 13</button>
                                     <button class="sub-tab-btn" data-subtab="week12"><span class="sub-tab-icon">🌕</span> Week 12</button>
+                                    <button class="sub-tab-btn" data-subtab="week11"><span class="sub-tab-icon">🌕</span> Week 11</button>
+                                    <button class="sub-tab-btn" data-subtab="week10"><span class="sub-tab-icon">🌖</span> Week 10</button>
+                                    <button class="sub-tab-btn" data-subtab="week9"><span class="sub-tab-icon">🌙</span> Week 9</button>
+                                    <button class="sub-tab-btn" data-subtab="week8"><span class="sub-tab-icon">🌘</span> Week 8</button>
+                                    <button class="sub-tab-btn" data-subtab="week7"><span class="sub-tab-icon">🌗</span> Week 7</button>
+                                    <button class="sub-tab-btn" data-subtab="week6"><span class="sub-tab-icon">🌖</span> Week 6</button>
+                                    <button class="sub-tab-btn" data-subtab="week5"><span class="sub-tab-icon">🌕</span> Week 5</button>
+                                    <button class="sub-tab-btn" data-subtab="week4"><span class="sub-tab-icon">🌔</span> Week 4</button>
+                                    <button class="sub-tab-btn" data-subtab="week3"><span class="sub-tab-icon">🌓</span> Week 3</button>
+                                    <button class="sub-tab-btn" data-subtab="week2"><span class="sub-tab-icon">🌒</span> Week 2</button>
+                                    <button class="sub-tab-btn" data-subtab="week1"><span class="sub-tab-icon">🌑</span> Week 1</button>
                                 </div>
                                 <button class="scroll-arrow right-arrow" aria-label="Scroll right">›</button>
                             </div>
-                            <!-- Week 1-7 unchanged -->
-                            <div class="sub-panel active" id="sub-panel-week1">
-                                <article class="day-entry"><div class="day-header"><span class="day-date">May 17</span><span class="day-status status-not">meditation not done</span><span class="day-divider"></span></div><div class="day-tldr"><span class="tldr-icon">✦</span><span class="tldr-text">Day of the call, no meditation — just tuned in on the new moon and first day of my cycle.</span></div><div class="day-text"><p>The day of our call. Interesting that it's day 1 of the program, a new moon, and day 1 of my menstrual cycle. I didn't start practicing that day, just tuned in.</p></div></article>
+
+                            <!-- Week 1 -->
+                            <div class="sub-panel" id="sub-panel-week1">
+                                <article class="day-entry"><div class="day-header"><span class="day-date">May 17</span><span class="day-status status-not">meditation not done</span><span class="day-divider"></span></div><div class="day-tldr"><span class="tldr-icon">✦</span><span class="tldr-text">Day of the call, no meditation, just tuned in on the new moon and first day of my cycle.</span></div><div class="day-text"><p>The day of our call. Interesting that it's day 1 of the program, a new moon, and day 1 of my menstrual cycle. I didn't start practicing that day, just tuned in.</p></div></article>
                                 <article class="day-entry"><div class="day-header"><span class="day-date">May 18</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-tldr"><span class="tldr-icon">✦</span><span class="tldr-text">First real meditation after a long break: struggled with the inner "journalist" and timer anxiety, but reached 30 minutes with a brief deep trance.</span></div><div class="day-text"><p>This is a meditation after a pretty long break. There were 2 attempts. In the 1st one I was shocked at how loud the world around me was and got super irritated (even though I live in a quiet apartment in a quiet neighborhood), couldn't continue.</p><p>The second one actually worked and I did 30 minutes. I was in a deep trance for about 5–7 minutes. The main difficulty — I kept thinking about the diary and what to write down, almost every moment was like "and this moment I'll describe in the diary like this." I tried to negotiate with the "journalist," convince him that I wouldn't write anything except "sat for 30 minutes" so he'd shut up, but he only believed me for about 5 minutes and then carried on again.</p><p>I worried that something was wrong with the timer and that I'd meditate for longer than I should, checked the time once during the meditation (but at least it was a cool time — 1:11, and because of that I was a little less upset at my weakness). I got irritated that I was concentrating way too hard on the breath, on the belly movement, it was against my will, and I thought the whole point of this meditation was not to get stuck on anything, breath included.</p><p>Towards the end of the meditation (the last 5 minutes or so) some random thoughts started coming. They were neutral, just some nonsense, but I was even surprised that this stuff was getting into my head and I was catching and stopping it pretty late. By then it was already half-sleep. And to be more honest, I stayed there out of laziness because it was easier to spend the last minutes that I already didn't like that way.</p></div></article>
-                                <article class="day-entry"><div class="day-header"><span class="day-date">May 19</span><span class="day-status status-not">meditation not done</span><span class="day-divider"></span></div><div class="day-tldr"><span class="tldr-icon">✦</span><span class="tldr-text">Only 15 minutes; perfectionism about technique vs. familiar "vibrations" made me quit — decided to wait for mentor feedback.</span></div><div class="day-text"><p>This meditation only lasted 15 minutes. I meditated during the day and was planning to just do a new session in the evening for 30 minutes, since that time I'd cut it short. But because of perfectionism I couldn't, and I also couldn't fall asleep properly that day, only towards morning.</p><p>The perfectionism goes like this: during meditation I'm used to tuning into some kind of "vibration" and kind of dissolving into it (in practice it feels like various subtle, quiet sounds — several of them, around 1 to 5 — which you can't hear in an ordinary state; if you catch one and stay with it, it's easy to slip into a trance). I was in a trance, but then I thought that tuning into this vibration and being in that trance is cheating, because there's not much difference between getting stuck on a thought and getting stuck on a vibration. So I decided to meditate without it, and that already felt a bit like torture — this, by the way, is what made the 1st attempt cut off at 15 minutes.</p><p>I managed to stop the first strong impulse to quit, a couple of minutes passed, the second one came, and I didn't have the strength to stop it. In the end I got confused about how I'm supposed to meditate and what's even required of me. I decided, until I get your feedback this week, to just keep meditating the way I usually do.</p><p>Also, I meditate with my eyes closed. I know you're supposed to do it with them open, but I've almost never done it that way before and I'm a bit afraid of it because of the presumed difficulty, so I haven't even tried + I remember Diana said she did the program with her eyes closed and that it's fine. I decided not to think about it until your feedback.</p></div></article>
-                                <article class="day-entry"><div class="day-header"><span class="day-date">May 20</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-tldr"><span class="tldr-icon">✦</span><span class="tldr-text">Meditation done despite a broken timer and inner journalist; noticed how I entertain myself during practice — need guidance.</span></div><div class="day-text"><p>I decided to do it without much perfectionism, because I got scared that I wouldn't be able to start at all because of it. It's fairly easy for me to stay still, except that sometimes I want to swallow saliva and sometimes the breath itself gets too pronounced and there's movement in the chest and belly.</p><p>The hardest part was that again, somewhere after 15–20 minutes, there was a compulsive urge to check the time and I gave in, like 3 times in this final part of the meditation (by the way, the timer really was broken, or rather, the laptop with it ran out of battery and turned off). The "journalist" was back, but way less intrusive and he hardly irritated me. He wanted to write down all sorts of successful and cool moments from the meditation into the diary, like to show off.</p><p>In this meditation I remembered a post by an acquaintance of mine, he invented the "smack" technique: during meditation you mentally kiss the phenomena that distract you. I guess it helped me a little, at least it's better than putting them down. No deep trance happened this time. Before the next meditation I'll try to work through this pattern — that I compulsively want to check the time and worry that the timer is broken, set wrong, etc.</p><p>I also noticed that already in the second part of the meditation I was trying to entertain myself with meditative stuff, like moving energies through the body, feeling an energy field around me, etc., it was fun, but I noticed it pretty quickly and stopped doing it — for me that's also cheating.</p></div><div class="reflection-block"><span class="reflection-label">/ intermediate reflection /</span><p>So basically, it seems I really need feedback from the mentor, my problems right now are because I apparently don't understand what the program requires. Usually in my meditations there is no goal, so I just hang out in "vibrations," but that doesn't seem to train my mind and the program is definitely not for that.</p><p>I also remembered a moment from the past that once changed my practice — it was a vipassana retreat, where for the first 2 days I was suffering, but then the teacher said "actually, meditation should bring pleasure," and overall that phrase was a revelation for me, and it was enough for meditation to start bringing me pleasure, including at that vipassana retreat (but honestly I was breaking the vipassana rules in terms of meditation technique to do that, I was looking for entertaining moments in meditation for myself, partly as a kind of protest against Buddhism — it wasn't a Goenka retreat, it was right in a temple with mantras, etc.), I didn't even want to get out of meditation and leave the retreat. That was many years ago. And now I'm consciously removing the things that bring pleasure in meditation. In short, I'm just confused.</p></div></article>
+                                <article class="day-entry"><div class="day-header"><span class="day-date">May 19</span><span class="day-status status-not">meditation not done</span><span class="day-divider"></span></div><div class="day-tldr"><span class="tldr-icon">✦</span><span class="tldr-text">Only 15 minutes; perfectionism about technique vs. familiar "vibrations" made me quit, decided to wait for mentor feedback.</span></div><div class="day-text"><p>This meditation only lasted 15 minutes. I meditated during the day and was planning to just do a new session in the evening for 30 minutes, since that time I'd cut it short. But because of perfectionism I couldn't, and I also couldn't fall asleep properly that day, only towards morning.</p><p>The perfectionism goes like this: during meditation I'm used to tuning into some kind of "vibration" and kind of dissolving into it (in practice it feels like various subtle, quiet sounds — several of them, around 1 to 5 — which you can't hear in an ordinary state; if you catch one and stay with it, it's easy to slip into a trance). I was in a trance, but then I thought that tuning into this vibration and being in that trance is cheating, because there's not much difference between getting stuck on a thought and getting stuck on a vibration. So I decided to meditate without it, and that already felt a bit like torture — this, by the way, is what made the 1st attempt cut off at 15 minutes.</p><p>I managed to stop the first strong impulse to quit, a couple of minutes passed, the second one came, and I didn't have the strength to stop it. In the end I got confused about how I'm supposed to meditate and what's even required of me. I decided, until I get your feedback this week, to just keep meditating the way I usually do.</p><p>Also, I meditate with my eyes closed. I know you're supposed to do it with them open, but I've almost never done it that way before and I'm a bit afraid of it because of the presumed difficulty, so I haven't even tried + I remember Diana said she did the program with her eyes closed and that it's fine. I decided not to think about it until your feedback.</p></div></article>
+                                <article class="day-entry"><div class="day-header"><span class="day-date">May 20</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-tldr"><span class="tldr-icon">✦</span><span class="tldr-text">Meditation done despite a broken timer and inner journalist; noticed how I entertain myself during practice, need guidance.</span></div><div class="day-text"><p>I decided to do it without much perfectionism, because I got scared that I wouldn't be able to start at all because of it. It's fairly easy for me to stay still, except that sometimes I want to swallow saliva and sometimes the breath itself gets too pronounced and there's movement in the chest and belly.</p><p>The hardest part was that again, somewhere after 15–20 minutes, there was a compulsive urge to check the time and I gave in, like 3 times in this final part of the meditation (by the way, the timer really was broken, or rather, the laptop with it ran out of battery and turned off). The "journalist" was back, but way less intrusive and he hardly irritated me. He wanted to write down all sorts of successful and cool moments from the meditation into the diary, like to show off.</p><p>In this meditation I remembered a post by an acquaintance of mine, he invented the "smack" technique: during meditation you mentally kiss the phenomena that distract you. I guess it helped me a little, at least it's better than putting them down. No deep trance happened this time. Before the next meditation I'll try to work through this pattern — that I compulsively want to check the time and worry that the timer is broken, set wrong, etc.</p><p>I also noticed that already in the second part of the meditation I was trying to entertain myself with meditative stuff, like moving energies through the body, feeling an energy field around me, etc., it was fun, but I noticed it pretty quickly and stopped doing it — for me that's also cheating.</p></div><div class="reflection-block"><span class="reflection-label">/ intermediate reflection /</span><p>So basically, it seems I really need feedback from the mentor, my problems right now are because I apparently don't understand what the program requires. Usually in my meditations there is no goal, so I just hang out in "vibrations," but that doesn't seem to train my mind and the program is definitely not for that.</p><p>I also remembered a moment from the past that once changed my practice — it was a vipassana retreat, where for the first 2 days I was suffering, but then the teacher said "actually, meditation should bring pleasure," and overall that phrase was a revelation for me, and it was enough for meditation to start bringing me pleasure, including at that vipassana retreat (but honestly I was breaking the vipassana rules in terms of meditation technique to do that, I was looking for entertaining moments in meditation for myself, partly as a kind of protest against Buddhism — it wasn't a Goenka retreat, it was right in a temple with mantras, etc.), I didn't even want to get out of meditation and leave the retreat. That was many years ago. And now I'm consciously removing the things that bring pleasure in meditation. In short, I'm just confused.</p></div></article>
                                 <article class="day-entry"><div class="day-header"><span class="day-date">May 21</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>My only goal was — not to look at the timer even once. And I did it. It was a good, easy meditation, closer to what I expected of myself in the previous days. Without the nerves I had in the first 3 days. And the meditative state came not from concentrating on the "vibration," but from something else. It was more like concentrating on emptiness, dissolving into emptiness, I don't know. And concentrating on the inner sound would have even thrown me off. At some point there was even a subjective dissolution of the body. But it wasn't a full-on deep trance.</p><p>As for small compulsions in this meditation — at the beginning I really wanted to hallucinate (watch pictures) for fun, I pushed that aside, then some visual stuff started appearing against my will towards the end, but I was able to remove that too.</p><p>I also swallowed saliva 2 more times, for me it's a signal of concentration weakening. I felt anger about it and anger about the anger, but it seems like after that no such impulses arose and I kind of sorted it out, there was no compulsive attention to saliva. I started pressing my tongue to the roof of my mouth and I think that's what helped, I knew about this technique but I avoided it because of some not-so-great associations, since I learned about this technique in a place I don't like.</p><p>The journalist was there too, of course, but he doesn't piss me off as much anymore and there was way less of him, can't compare to day 1. And I'm even thinking I might find some use in him. In this meditation I understood that his chatter actually exists to support my ego (it doesn't always help, if anything the fact of his chatter undermines my "meditative self-esteem," but he tries), and exactly when my ego isn't hurting, meditating is way easier. And right now it's hurting a little because of the fact that there's an external observer of my practice.</p></div></article>
                                 <article class="day-entry"><div class="day-header"><span class="day-date">May 22</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>This time my goal was also just not to look at the timer and I did it. The journalist was there, but his voice is getting less vivid, and he wasn't so much praising me as just describing what was happening. Or maybe there just wasn't anything outstanding in this meditation, just an ordinary, average meditation without suffering and without breakthroughs.</p><p>Overall my mind was chaotic, it kept grabbing onto different subtle phenomena for concentration (catching random vibrations), moving from one to another when it got bored. A couple of times some thoughts not even about the meditation process, just from life, flickered by. I didn't try very hard, since my goal was really just not to look at the timer. And it seems I didn't have the resources for a quality meditation. I still think my difficulties are mainly because I don't understand the subtleties of the meditation technique in this system, that's why I grab onto different things and don't know what to orient myself towards or what to aim for.</p></div></article>
                                 <article class="day-entry"><div class="day-header"><span class="day-date">May 23</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>At first it was a neutral meditation, then I started feeling anxiety that someone might unexpectedly come into my room while I'm in such a vulnerable state (I wasn't home alone), because of that I looked at the time after 20 minutes. And even 2 or 3 times. And overall, after the meditation the anxiety intensified and I became a bit furious in general. I think it's a reaction to a boundary violation or a desire to expand and strengthen them. Because when I think about plans regarding this, I calm down a little.</p></div></article>
                                 <article class="day-entry"><div class="day-header"><span class="day-date">May 24</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>The impulse to check the time came up (about 5 not very strong impulses), but I overcame them. There was a moment I hadn't encountered in the days before: I caught a semi-trance state, and there was a possibility to go deeper, to dive in, but that's when the timer became an obstacle again, only differently: "what's the point of going into a deep state, the timer will just go off and ruin everything anyway." I felt the timer almost with my skin, almost as a physical obstruction, it even visualized itself as a barrier. After that there were also thoughts that if a meditation has a timer, then it's fake, and nothing good can come of it. That was just a thought, but overall it was a fairly easy, good meditation, and its distinctive feature was that in it I didn't torture myself as much as in the past days, it was even a rest, a refuge, and here's from what:</p><p>So basically, as soon as I more or less started to cope with this pattern of torment from the timer and the external observer in meditation, it formed in my life at a complexity ratio of 1 to 1000. And now I'm writing from inside this process. In short, now I'm suffering not just from the timer, but from all of time in general, and I've got not just an observer of my meditation (the mentor), but a physical observer in the house. Because of this I can't fall asleep, actually it's been 2 nights already. In general insomnia isn't very typical for me, I suffer from it maybe a couple of nights a year. But I'm afraid of insomnia and consider sleep the most important thing in life, and that seems to complicate everything as well.</p><p>Right now it all feels like that wild desire to check the timer in the first days of the program, only there's no timer and nothing to check, and the observer also can't really do anything to me, this is all a game of my psyche that I can't get out of for now. It's just that in meditation I kind of learned "not to check," but here I still can't understand what exactly I'm not supposed to check.</p><p>Just for the record, I don't have OCD. This is a reaction to a trigger — to time limits and to the presence of an observer in a space I consider intimate.</p><p>I understand this entry might look quite intense, but I hope it won't cause fear for me. I'll cope with this and I don't need any special help. For me this is far from the highest level of intensity I've faced. I'm describing everything as it is because it affects my practice and seems important for understanding my situation.</p></div></article>
                             </div>
+
+                            <!-- Week 2 -->
                             <div class="sub-panel" id="sub-panel-week2">
                                 <article class="day-entry"><div class="day-header"><span class="day-date">May 25</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Attempt 1, no good. About 13 minutes. I was doing it in not the most comfortable conditions. Lots of noise, not enough privacy, because of that I couldn't take it, looked at the time and couldn't continue anymore. I knew it was all gonna be hard, but I was trying so hard to practice meditating in crappy conditions. There was this pleasant sound of a humming fridge, would've been nice to meditate to it, but I had this anxiety like "why tune into it if it's about to stop humming", so that didn't save me.</p><p>Attempt 2. A pleasant, good meditation. Spent a lot of time in a meditative, half-trance state, slipping into an 80% trance for moments. Felt kind towards the journalist 'cause I think I got his essence. Catching the "vibration" was super easy, usually I have to listen closely, kinda strain for it, but here it was almost like a normal sound (still disappeared when coming out of the meditative state though). Wanted to check the timer, but the impulses weren't too strong. There were bird sounds, a bit distracting, but still not too bad.</p></div></article>
                                 <article class="day-entry"><div class="day-header"><span class="day-date">May 26</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Normal, ordinary meditation. Don't even feel like writing anything.</p></div></article>
@@ -602,6 +679,8 @@
                                 <article class="day-entry"><div class="day-header"><span class="day-date">May 30</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Didn't hear the timer and accidentally meditated for 50 minutes. I was meditating at night, towards morning. And through my closed eyelids I noticed it had gotten way too light, so that's how I decided to check the timer and ended the meditation.</p></div></article>
                                 <article class="day-entry"><div class="day-header"><span class="day-date">May 31</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Pleasant meditation, but more of a foggy feeling than clarity. Today is already the 3rd day in a row with minor unpleasant physical sensations. Something on my face was itching. But overall it didn't bother me and I didn't try to scratch.</p></div></article>
                             </div>
+
+                            <!-- Week 3 -->
                             <div class="sub-panel" id="sub-panel-week3">
                                 <article class="day-entry"><div class="day-header"><span class="day-date">June 1</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Normal meditation. But afterward I realized I had lost interest in tracking various distraction phenomena during the process. Some distraction happens — like swallowing saliva — and I just don’t care. It seems I don’t even notice most of these distractions anymore. I don’t know how to relate to this or how it affects the quality of meditation. On one hand, it feels quieter in my head, the inner voices are almost gone. On the other hand, maybe I’ve just started noticing less and in reality my meditation has simply gotten worse, only I don’t know about it? Instead of the journalist voice today there was a lot of visual stuff, basically like dreams, a movie inside. I managed to pull myself out of them, but they kept appearing again and again.</p></div></article>
                                 <article class="day-entry"><div class="day-header"><span class="day-date">June 2</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Usual meditation. There were quite bright “vibrations,” but no deep trance. The journalist is almost completely gone. At some point my nose started itching really strongly. I would like to figure out this phenomenon. Maybe it anticipates a new level of relaxation, itches to attract attention, who knows. Of course when I come out of meditation it stops itching. I can’t say it prevents me from meditating, but it starts itching very intensely.</p><p>Right now I’m afraid I’ve fallen into a trap of mental dullness. And I’ve been there for several days already. Sweet degradation. Still don’t know how to get out of it. I think now that I no longer care about the timer, the journalist, etc., I have the right to give myself more difficult tasks in meditation. And right now that is — to keep a sharp mind and not allow fog.</p></div></article>
@@ -611,6 +690,8 @@
                                 <article class="day-entry"><div class="day-header"><span class="day-date">June 6</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Meditated 30 minutes.</p></div></article>
                                 <article class="day-entry"><div class="day-header"><span class="day-date">June 7</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>I had little motivation for meditation and I’m even afraid of losing it. The initial charge is behind me. Despite the feeling of losing motivation, meditation already feels like a routine. About the meditation: it wasn’t bad, but it wasn’t strong stable concentration either. The only expectation I had of myself was to stay in place and not get too involved in thoughts. The whole meditation felt like I was trying to seat myself in place instead of running after time. I even visualized huge hands pressing me against the wall so I would stay put. Maybe thanks to this I felt the so-called grounding for the first time during this marathon. Usually during meditation I’m clearly somewhere outside myself. Again there was strong itching on the tip of the right side of my nose, which seemed to crawl along a line toward the outer corner of the eye. This is not ordinary itching. It is very intense and precise, but I can’t call it unpleasant. There were also beginnings of it symmetrically on the other side of the nose, but it didn’t spread across the cheek there.</p></div></article>
                             </div>
+
+                            <!-- Week 4 -->
                             <div class="sub-panel" id="sub-panel-week4">
                                 <article class="day-entry"><div class="day-header"><span class="day-date">June 8</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>I meditated for 30 minutes. Lost the notes.</p></div></article>
                                 <article class="day-entry"><div class="day-header"><span class="day-date">June 9</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>I meditated for 30 minutes. Lost the notes.</p></div></article>
@@ -620,6 +701,8 @@
                                 <article class="day-entry"><div class="day-header"><span class="day-date">June 13</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>At first it was a terrible, disgusting meditation. I couldn’t pull myself together because I was extremely exhausted and my body hurt. When I was in my usual meditative mode and heard the inner sounds, it was also awful. I’m generally already tired of them, but today they were simply repulsive. A nasty whine of astral mosquitoes. When I concentrated on the body, the sound disappeared, but concentrating on the body was also difficult because of how painful it felt today. Then everything started getting better. I summoned the “journalist” into my meditation and he entertained me a little, which made the meditation less unbearable. Then the familiar facial itch appeared, but this time on the other side, and it became the most pleasant point for concentration possible. After that the meditation straightened out and flowed easily. The rest of the time passed unnoticed. And after the meditation I felt much better.</p></div></article>
                                 <article class="day-entry"><div class="day-header"><span class="day-date">June 14</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Regular meditation. It passed easily, almost unnoticed. There was strong itching in my nose — the same as for the last several days. I can probably describe it as very weak and frequent electric shocks. I used this itch as the object of concentration. At one point during the meditation it became very hot.</p></div></article>
                             </div>
+
+                            <!-- Week 5 -->
                             <div class="sub-panel" id="sub-panel-week5">
                                 <article class="day-entry"><div class="day-header"><span class="day-date">June 15</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>It was hard to choose one object for concentration and stay on it. During this meditation it changed about five times. There was the nose itch again. I heard that “deafening mosquito vibration” again, but it wasn’t as loud and I handled it normally.</p></div></article>
                                 <article class="day-entry"><div class="day-header"><span class="day-date">June 16</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>At first it was very difficult because of exhaustion; it was unpleasant to be in the body. Then I managed to concentrate on the tip of my nose and it became pleasant and quite easy. Towards the end the familiar itch appeared again. I can probably use it as a timer now.</p></div></article>
@@ -629,6 +712,8 @@
                                 <article class="day-entry"><div class="day-header"><span class="day-date">June 20</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Lightness in my head and easy to meditate, but at one point my stomach hurt (for a moment, but quite sharply). It threw me off and I looked at the timer. It seems the timer thing is starting to degrade for me.</p></div></article>
                                 <article class="day-entry"><div class="day-header"><span class="day-date">June 21</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>I meditated for 30 minutes.</p></div></article>
                             </div>
+
+                            <!-- Week 6 -->
                             <div class="sub-panel" id="sub-panel-week6">
                                 <article class="day-entry"><div class="day-header"><span class="day-date">June 22</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>I sat down to meditate in a terrible state (overload, strong nausea, headache), but after the meditation everything passed. Even after about 10 minutes it already felt much better. It was easy to meditate, but there were random thoughts that I fell into for periods of time.</p></div></article>
                                 <article class="day-entry"><div class="day-header"><span class="day-date">June 23</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>It was very difficult to meditate, especially the first 10 minutes. My breathing was distracting — it was shallow and pronounced. Then it got easier. The strong nose itch returned, and when I concentrated on it, it felt like my nose was vibrating.</p></div></article>
@@ -638,6 +723,8 @@
                                 <article class="day-entry"><div class="day-header"><span class="day-date">June 27</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Normal meditation. Shallow breathing interfered, but less than the previous days, and overall I mostly managed to keep it in the background. And it seems it becomes a problem when I go deeper into meditation. The breathing spasm is mostly on the exhale. A couple of times I got strongly distracted and looked at the timer because a fly landed on me and crawled around…</p></div></article>
                                 <article class="day-entry"><div class="day-header"><span class="day-date">June 28</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Quite a relaxed meditation. I mostly managed to “do nothing.” Breathing was a bit tense, but it didn’t interfere with meditating.</p></div></article>
                             </div>
+
+                            <!-- Week 7 -->
                             <div class="sub-panel" id="sub-panel-week7">
                                 <article class="day-entry"><div class="day-header"><span class="day-date">June 29</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>At first it was normal, but boring. Towards the end breathing started to tense me up again. I looked at the timer two minutes before the end.</p></div></article>
                                 <article class="day-entry"><div class="day-header"><span class="day-date">June 30</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>I meditated for 30 minutes. Lost the note or didn’t make one.</p></div></article>
@@ -647,7 +734,8 @@
                                 <article class="day-entry"><div class="day-header"><span class="day-date">July 4</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Overall everything was normal, but I fell into thoughts and hypnagogic images a bit. The unusual thing was that I got hot and started sweating. It’s hot at home right now, yes, but during meditation it became much hotter. I didn’t feel my breathing at all.</p></div></article>
                                 <article class="day-entry"><div class="day-header"><span class="day-date">July 5</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>It started easily, but became harder towards the end. There was very strong itching in my nose. And again at one point it got hot and I sweated.</p></div></article>
                             </div>
-                            <!-- Week 8 (July 6-12) -->
+
+                            <!-- Week 8 -->
                             <div class="sub-panel" id="sub-panel-week8">
                                 <article class="day-entry"><div class="day-header"><span class="day-date">July 6</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Overall it was a normal meditation. There were almost no thoughts, but there were several moments when I almost started suffocating. I felt a contraction in my diaphragm. But there were also moments when I didn't feel my breathing at all. Over the last week or two, I've slightly changed my approach, and when I switched back to the old approach, I mostly didn't feel any signs of breathing at all. My leg went numb again today — the right one.</p></div></article>
                                 <article class="day-entry"><div class="day-header"><span class="day-date">July 7</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Meditated for 30 minutes. Didn't find the energy to write anything. Nothing special. It started out normal, then I fell into thoughts, then there were some minor difficulties with breathing.</p></div></article>
@@ -657,7 +745,8 @@
                                 <article class="day-entry"><div class="day-header"><span class="day-date">July 11</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>At the beginning of the meditation I was angry at an external irritating object (someone on the street at 4 a.m. was keeping everyone awake), but this mostly manifested as a physical sensation, not as thoughts, and I can't say it interfered with my meditation. Overall, it was a fairly high-quality meditation; at some moments I stopped feeling the boundaries of my body. The meditation passed pretty quickly.</p></div></article>
                                 <article class="day-entry"><div class="day-header"><span class="day-date">July 12</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>A rather difficult meditation. There were a lot of random thoughts.</p></div></article>
                             </div>
-                            <!-- Week 9 (July 13-19) -->
+
+                            <!-- Week 9 -->
                             <div class="sub-panel" id="sub-panel-week9">
                                 <article class="day-entry"><div class="day-header"><span class="day-date">July 13</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>At some point my breathing started to interfere. There were many impulses to check the timer, change my posture, but I didn't give in to them. My leg went numb badly. Still, there were some moments of normal meditation — maybe about 5 cycles when I lost the meditative state and returned to it. A new internal sound also appeared. Before it used to be monotonous sounds at different frequencies, but today it sounded like bells — pleasant.</p></div></article>
                                 <article class="day-entry"><div class="day-header"><span class="day-date">July 14</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>It was difficult. I meditated in a state of overload (nausea, headache). There were few thoughts. But it was boring and I wanted to check the timer several times — I didn't. The trance wasn't very deep. And my state afterward was about the same as before.</p></div></article>
@@ -667,7 +756,8 @@
                                 <article class="day-entry"><div class="day-header"><span class="day-date">July 18</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>There were quite few thoughts and no vivid phenomena or deep immersions. I had the question: "is this meditation at all or not?"</p></div></article>
                                 <article class="day-entry"><div class="day-header"><span class="day-date">July 19</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>A good meditation. I didn't even want to come out of it, I sat a little longer. It was even a bit hard to exit. Afterwards I felt refreshed.</p></div></article>
                             </div>
-                            <!-- Week 10 (July 20-26) -->
+
+                            <!-- Week 10 -->
                             <div class="sub-panel" id="sub-panel-week10">
                                 <article class="day-entry"><div class="day-header"><span class="day-date">July 20</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>A rather good meditation, but it got a bit spoiled towards the end — thoughts started appearing, but not many.</p></div></article>
                                 <article class="day-entry"><div class="day-header"><span class="day-date">July 21</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Meditating was easy, but at some point there were emotionally charged thoughts. Towards the end, hypnagogic images. In the middle there was a moment of diaphragm tension, but it was only for a moment.</p></div></article>
@@ -677,7 +767,8 @@
                                 <article class="day-entry"><div class="day-header"><span class="day-date">July 25</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>I didn't feel very well before meditation. I couldn't meditate in the usual position because of nausea. But I still meditated and it was acceptable.</p></div></article>
                                 <article class="day-entry"><div class="day-header"><span class="day-date">July 26</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Normal meditation.</p></div></article>
                             </div>
-                            <!-- Week 11 (July 27 - Aug 2) -->
+
+                            <!-- Week 11 -->
                             <div class="sub-panel" id="sub-panel-week11">
                                 <article class="day-entry"><div class="day-header"><span class="day-date">July 27</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Normal. Don't know what to write.</p></div></article>
                                 <article class="day-entry"><div class="day-header"><span class="day-date">July 28</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Normal.</p></div></article>
@@ -687,7 +778,8 @@
                                 <article class="day-entry"><div class="day-header"><span class="day-date">August 1</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Quite easy.</p></div></article>
                                 <article class="day-entry"><div class="day-header"><span class="day-date">August 2</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Meditated for 30 minutes.</p></div></article>
                             </div>
-                            <!-- Week 12 (Aug 3-9) -->
+
+                            <!-- Week 12 -->
                             <div class="sub-panel" id="sub-panel-week12">
                                 <article class="day-entry"><div class="day-header"><span class="day-date">August 3</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>It was usual. Then at some point my nose started itching badly. With 5 minutes left, I really wanted to check the timer and I did.</p></div></article>
                                 <article class="day-entry"><div class="day-header"><span class="day-date">August 4</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Meditated for 30 minutes.</p></div></article>
@@ -697,137 +789,233 @@
                                 <article class="day-entry"><div class="day-header"><span class="day-date">August 8</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Meditated for 30 minutes.</p></div></article>
                                 <article class="day-entry"><div class="day-header"><span class="day-date">August 9</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Meditated for 30 minutes.</p></div></article>
                             </div>
+
+                            <!-- Week 13 -->
+                            <div class="sub-panel" id="sub-panel-week13">
+                                <article class="day-entry"><div class="day-header"><span class="day-date">August 10</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Meditated for 30 minutes.</p></div></article>
+                                <article class="day-entry"><div class="day-header"><span class="day-date">August 11</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Meditated for 30 minutes.</p></div></article>
+                                <article class="day-entry"><div class="day-header"><span class="day-date">August 12</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Meditated for 30 minutes.</p></div></article>
+                                <article class="day-entry"><div class="day-header"><span class="day-date">August 13</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Meditated for 30 minutes.</p></div></article>
+                                <article class="day-entry"><div class="day-header"><span class="day-date">August 14</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Meditated for 30 minutes.</p></div></article>
+                                <article class="day-entry"><div class="day-header"><span class="day-date">August 15</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Meditated for 30 minutes.</p></div></article>
+                                <article class="day-entry"><div class="day-header"><span class="day-date">August 16</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Meditated for 30 minutes.</p></div></article>
+                            </div>
+
+                            <!-- Week 14 -->
+                            <div class="sub-panel" id="sub-panel-week14">
+                                <article class="day-entry"><div class="day-header"><span class="day-date">August 17</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>My former, normal level of meditation returned to me (or more precisely, the feeling in meditation). The only thing is that along with it a very strong nose itch returned, around the middle of the session. It's really strong, sometimes I want to scream from it. But that's just a bit of drama. There was a strong impulse to check the time and change my posture, but I didn't do it. And I finished at a beautiful time 5:55. Afterward there's a feeling of freshness.</p></div></article>
+                                <article class="day-entry"><div class="day-header"><span class="day-date">August 18</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Meditated for 30 minutes.</p></div></article>
+                                <article class="day-entry"><div class="day-header"><span class="day-date">August 19</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Quality of meditation 75%. A normal meditation with the usual trance state (immersion from 40 to 60%). Writing in the diary anything more than one sentence is possible only when calling the journalist into meditation, whom I wrote about at the beginning of the diary several months ago. I'll tell in more detail how the immersion into trance happens. I start hearing different sounds, on average you can hear 5-10 sounds at once. Usually I start hearing right from the beginning of meditation, maybe 20-30 seconds after I sat down. Concentration on any of them is usually quite pleasant (though sometimes there's the ultrasound of a hellish mosquito, this can even be almost physically painful. And it's not a problem with the ears, I don't hear anything like that outside of meditation, and I can stop it in one second by exiting meditation or concentrating attention somewhere in the belly), and one could say I completely freeze to stay inside the sound, so there's strong concentration. Sometimes you can stay inside 2 sounds at once, today there were moments when it was like that. But then you need to not hold in this sound by willpower, but relax, so that the holding in it happens automatically, and "you" seem to be above all of it, like flying. Then the trance state becomes deeper, and meditation easier. Today some part of the meditation was like that.</p></div></article>
+                                <article class="day-entry"><div class="day-header"><span class="day-date">August 20</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Quality 65%.</p></div></article>
+                                <article class="day-entry"><div class="day-header"><span class="day-date">August 21</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Normal meditation without suffering and without flying off. There was neither resistance, nor deep trance. But everyday thoughts appeared, somewhere during the meditation there were 2 sets of thoughts into which I fell a bit. But they were partly connected with meditation. And actually, if I speak with ultimate honesty, I have some control over not falling into thoughts, I fall there when I'm lazy to meditate. I'll try not to do that.</p></div></article>
+                                <article class="day-entry"><div class="day-header"><span class="day-date">August 22</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Today I managed to enter a cool deep trance state, and it was felt more bodily, to some degree a feeling of dissolution of the body, being in some dense emptiness. But at the same time the mind felt quite ordinary, it was calm, but there was no flying off from this world. Finished at 5:55, not on purpose.</p></div></article>
+                                <article class="day-entry"><div class="day-header"><span class="day-date">August 23</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>I was quite tense and tired at the beginning of the meditation, the whole meditation I wanted to end it, it was uncomfortable. But I can't say that the meditation itself was terrible overall. I looked at the timer once... finished at 6:06, not on purpose.</p></div></article>
+                            </div>
+
+                            <!-- Week 15 -->
+                            <div class="sub-panel" id="sub-panel-week15">
+                                <article class="day-entry"><div class="day-header"><span class="day-date">August 24</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Meditated for 30 minutes.</p></div></article>
+                                <article class="day-entry"><div class="day-header"><span class="day-date">August 25</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Meditated for 30 minutes.</p></div></article>
+                                <article class="day-entry"><div class="day-header"><span class="day-date">August 26</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Meditated for 30 minutes.</p></div></article>
+                                <article class="day-entry"><div class="day-header"><span class="day-date">August 27</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Very hard to write (but today it's possible thanks to the activity of the narrator. Already for 3 days I notice that a strong impulse to check the time arises about a minute, or at most 5 minutes before the end of meditation. It's very unpleasant, in a moment the state changes, heartbeat quickens, tension is felt and even some anger. I'm not checking anything anymore, this feeling now for me is just a signal that meditation will end soon. Today a new sound appeared, it's higher and denser than the others, but not squeaky. Not very easy to catch it. But I'm not 100% sure that it's definitely an inner sound. At the beginning of the meditation there were thoughts not related to meditation and having no meaning, but they were like a layer above meditation, didn't interfere much and didn't engage me. Overall it was just a normal meditation. Without any special states and without torment (except the last minute).</p></div></article>
+                                <article class="day-entry"><div class="day-header"><span class="day-date">August 28</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Meditated for 30 minutes.</p></div></article>
+                                <article class="day-entry"><div class="day-header"><span class="day-date">August 29</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Meditated for 30 minutes.</p></div></article>
+                                <article class="day-entry"><div class="day-header"><span class="day-date">August 30</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Meditated for 30 minutes.</p></div></article>
+                            </div>
+
+                            <!-- Week 16 -->
+                            <div class="sub-panel" id="sub-panel-week16">
+                                <article class="day-entry"><div class="day-header"><span class="day-date">August 31</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Meditated for 30 minutes.</p></div></article>
+                                <article class="day-entry"><div class="day-header"><span class="day-date">September 1</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Meditated for 30 minutes.</p></div></article>
+                                <article class="day-entry"><div class="day-header"><span class="day-date">September 2</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Meditated for 30 minutes.</p></div></article>
+                                <article class="day-entry"><div class="day-header"><span class="day-date">September 3</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Meditated for 30 minutes.</p></div></article>
+                                <article class="day-entry"><div class="day-header"><span class="day-date">September 4</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Meditated for 30 minutes.</p></div></article>
+                                <article class="day-entry"><div class="day-header"><span class="day-date">September 5</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Meditated for 30 minutes.</p></div></article>
+                                <article class="day-entry"><div class="day-header"><span class="day-date">September 6</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>I had difficulties with writing down the past days. Overall the meditations weren't very quality. Today the quality was somewhere around 50%. A strong desire to look at the timer appeared somewhere in the middle of the meditation, and I couldn't hold out and looked at it about 3 minutes before the end... as for thoughts, there weren't many.</p></div></article>
+                            </div>
+
+                            <!-- Week 17 -->
+                            <div class="sub-panel active" id="sub-panel-week17">
+                                <article class="day-entry"><div class="day-header"><span class="day-date">September 7</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Quality 80-85 percent. And there was no urge to look at the timer at all.</p></div></article>
+                                <article class="day-entry"><div class="day-header"><span class="day-date">September 8</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Quality 75 percent, absolutely neutral meditation, the sounds were quiet and inexpressive and there were only about 2 of them.</p></div></article>
+                                <article class="day-entry"><div class="day-header"><span class="day-date">September 9</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Quite a difficult meditation.</p></div></article>
+                                <article class="day-entry"><div class="day-header"><span class="day-date">September 10</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Difficult, but on the other hand the meditation felt like a good training, since I could still stay inside a meditation of normal quality even with all the discomforts. In short, there was some kind of grounding problem and it was just hard for me to sit.</p></div></article>
+                                <article class="day-entry"><div class="day-header"><span class="day-date">September 11</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>It was neutral, but specifically from the point of view of my work it wasn't very.</p></div></article>
+                                <article class="day-entry"><div class="day-header"><span class="day-date">September 12</span><span class="day-status status-done">meditation done</span><span class="day-divider"></span></div><div class="day-text"><p>Quality 85 percent. There were few thoughts, sounds were caught without effort.</p></div></article>
+                            </div>
                         </div>
 
-                        <!-- Metamorphosis Tab (unchanged) -->
+                        <!-- Metamorphosis Tab -->
                         <div class="tab-panel" id="panel-metamorphosis">
                             <div class="sub-tab-scroll">
                                 <button class="scroll-arrow left-arrow" aria-label="Scroll left">‹</button>
                                 <div class="sub-tab-nav">
-                                    <button class="sub-tab-btn active" data-subtab="meta-week1"><span class="sub-tab-icon">🌑</span> Week 1</button>
-                                    <button class="sub-tab-btn" data-subtab="meta-week2"><span class="sub-tab-icon">🌒</span> Week 2</button>
-                                    <button class="sub-tab-btn" data-subtab="meta-week3"><span class="sub-tab-icon">🌓</span> Week 3</button>
-                                    <button class="sub-tab-btn" data-subtab="meta-week4"><span class="sub-tab-icon">🌔</span> Week 4</button>
-                                    <button class="sub-tab-btn" data-subtab="meta-week5"><span class="sub-tab-icon">🌕</span> Week 5</button>
-                                    <button class="sub-tab-btn" data-subtab="meta-week6"><span class="sub-tab-icon">🌖</span> Week 6</button>
-                                    <button class="sub-tab-btn" data-subtab="meta-week7"><span class="sub-tab-icon">🌗</span> Week 7</button>
+                                    <button class="sub-tab-btn active" data-subtab="meta-habits"><span class="sub-tab-icon">🌑</span> Change of Habit &amp; Taste</button>
+                                    <button class="sub-tab-btn" data-subtab="meta-sleep"><span class="sub-tab-icon">☾</span> Sleep</button>
                                 </div>
                                 <button class="scroll-arrow right-arrow" aria-label="Scroll right">›</button>
                             </div>
-                            <div class="sub-panel active" id="sub-panel-meta-week1">
-                                <div class="practice-name">Habit 1: Brushing teeth with other hand</div>
-                                <div class="habit-grid">
-                                    <div class="habit-day"><div class="habit-date">May 17</div><div class="habit-icon">—</div><div class="habit-note">didn't choose</div></div>
-                                    <div class="habit-day"><div class="habit-date">May 18</div><div class="habit-icon">—</div><div class="habit-note">forgot</div></div>
-                                    <div class="habit-day"><div class="habit-date">May 19</div><div class="habit-icon done">✅</div><div class="habit-note">brushing teeth other hand</div></div>
-                                    <div class="habit-day"><div class="habit-date">May 20</div><div class="habit-icon done">✅</div></div>
-                                    <div class="habit-day"><div class="habit-date">May 21</div><div class="habit-icon missed">✗</div><div class="habit-note">thought but didn't do</div></div>
-                                    <div class="habit-day"><div class="habit-date">May 22</div><div class="habit-icon done">✅</div><div class="habit-note">remembered during</div></div>
-                                    <div class="habit-day"><div class="habit-date">May 23</div><div class="habit-icon done">✅</div></div>
+
+                            <div class="sub-panel active" id="sub-panel-meta-habits">
+                                <div class="sub-tab-scroll">
+                                    <button class="scroll-arrow left-arrow" aria-label="Scroll left">‹</button>
+                                    <div class="sub-tab-nav">
+                                        <button class="sub-tab-btn active" data-subtab="meta-week7"><span class="sub-tab-icon">🌗</span> Week 7</button>
+                                        <button class="sub-tab-btn" data-subtab="meta-week6"><span class="sub-tab-icon">🌖</span> Week 6</button>
+                                        <button class="sub-tab-btn" data-subtab="meta-week5"><span class="sub-tab-icon">🌕</span> Week 5</button>
+                                        <button class="sub-tab-btn" data-subtab="meta-week4"><span class="sub-tab-icon">🌔</span> Week 4</button>
+                                        <button class="sub-tab-btn" data-subtab="meta-week3"><span class="sub-tab-icon">🌓</span> Week 3</button>
+                                        <button class="sub-tab-btn" data-subtab="meta-week2"><span class="sub-tab-icon">🌒</span> Week 2</button>
+                                        <button class="sub-tab-btn" data-subtab="meta-week1"><span class="sub-tab-icon">🌑</span> Week 1</button>
+                                    </div>
+                                    <button class="scroll-arrow right-arrow" aria-label="Scroll right">›</button>
+                                </div>
+
+                                <div class="sub-panel" id="sub-panel-meta-week1">
+                                    <div class="practice-name">Habit 1: Brushing teeth with other hand</div>
+                                    <div class="habit-grid">
+                                        <div class="habit-day"><div class="habit-date">May 17</div><div class="habit-icon">—</div><div class="habit-note">didn't choose</div></div>
+                                        <div class="habit-day"><div class="habit-date">May 18</div><div class="habit-icon">—</div><div class="habit-note">forgot</div></div>
+                                        <div class="habit-day"><div class="habit-date">May 19</div><div class="habit-icon done">✅</div><div class="habit-note">brushing teeth other hand</div></div>
+                                        <div class="habit-day"><div class="habit-date">May 20</div><div class="habit-icon done">✅</div></div>
+                                        <div class="habit-day"><div class="habit-date">May 21</div><div class="habit-icon missed">✗</div><div class="habit-note">thought but didn't do</div></div>
+                                        <div class="habit-day"><div class="habit-date">May 22</div><div class="habit-icon done">✅</div><div class="habit-note">remembered during</div></div>
+                                        <div class="habit-day"><div class="habit-date">May 23</div><div class="habit-icon done">✅</div></div>
+                                    </div>
+                                </div>
+                                <div class="sub-panel" id="sub-panel-meta-week2">
+                                    <div class="practice-name">Habit 1: Brushing teeth with other hand</div>
+                                    <div class="habit-grid">
+                                        <div class="habit-day"><div class="habit-date">May 24</div><div class="habit-icon done">✅</div></div>
+                                        <div class="habit-day"><div class="habit-date">May 25</div><div class="habit-icon done">✅</div></div>
+                                        <div class="habit-day"><div class="habit-date">May 26</div><div class="habit-icon done">✅</div></div>
+                                        <div class="habit-day"><div class="habit-date">May 27</div><div class="habit-icon missed">✗</div></div>
+                                        <div class="habit-day"><div class="habit-date">May 28</div><div class="habit-icon missed">✗</div></div>
+                                        <div class="habit-day"><div class="habit-date">May 29</div><div class="habit-icon done">✅</div></div>
+                                        <div class="habit-day"><div class="habit-date">May 30</div><div class="habit-icon done">✅</div></div>
+                                        <div class="habit-day"><div class="habit-date">May 31</div><div class="habit-icon done">✅</div></div>
+                                    </div>
+                                    <div class="reflection-block"><span class="reflection-label">/ reflection /</span><p>Began to feel irritation and resistance from the meaninglessness, although I deliberately chose something as meaningless as possible and that was the point. A desire arose to choose a normal metamorphosis, but removing this meaningless one seems wrong, it should stay.</p></div>
+                                </div>
+                                <div class="sub-panel" id="sub-panel-meta-week3">
+                                    <div class="practice-name">Habit 1: Brushing teeth with other hand</div>
+                                    <div class="meta-note">⚠️ I forgot to mark each day, but I feel I’ve been doing it automatically with my left hand, or I remember mid‑process and switch hands. Not entirely sure.</div>
+                                    <div class="habit-grid">
+                                        <div class="habit-day"><div class="habit-date">June 1</div><div class="habit-icon done">✅</div></div>
+                                        <div class="habit-day"><div class="habit-date">June 2</div><div class="habit-icon done">✅</div></div>
+                                        <div class="habit-day"><div class="habit-date">June 3</div><div class="habit-icon done">✅</div></div>
+                                        <div class="habit-day"><div class="habit-date">June 4</div><div class="habit-icon done">✅</div></div>
+                                        <div class="habit-day"><div class="habit-date">June 5</div><div class="habit-icon done">✅</div></div>
+                                        <div class="habit-day"><div class="habit-date">June 6</div><div class="habit-icon done">✅</div></div>
+                                        <div class="habit-day"><div class="habit-date">June 7</div><div class="habit-icon done">✅</div></div>
+                                    </div>
+                                </div>
+                                <div class="sub-panel" id="sub-panel-meta-week4">
+                                    <div class="practice-name">Habit 1: Brushing teeth with other hand</div>
+                                    <div class="meta-note">⚠️ Quality uncertain – performed inconsistently.</div>
+                                    <div class="habit-grid">
+                                        <div class="habit-day"><div class="habit-date">June 8</div><div class="habit-icon">∼</div></div>
+                                        <div class="habit-day"><div class="habit-date">June 9</div><div class="habit-icon">∼</div></div>
+                                        <div class="habit-day"><div class="habit-date">June 10</div><div class="habit-icon">∼</div></div>
+                                        <div class="habit-day"><div class="habit-date">June 11</div><div class="habit-icon">∼</div></div>
+                                        <div class="habit-day"><div class="habit-date">June 12</div><div class="habit-icon">∼</div></div>
+                                        <div class="habit-day"><div class="habit-date">June 13</div><div class="habit-icon">∼</div></div>
+                                        <div class="habit-day"><div class="habit-date">June 14</div><div class="habit-icon">∼</div></div>
+                                    </div>
+                                </div>
+                                <div class="sub-panel" id="sub-panel-meta-week5">
+                                    <div class="practice-name">Habit 1: Brushing teeth with other hand</div>
+                                    <div class="meta-note">⚠️ Quality uncertain – performed inconsistently.</div>
+                                    <div class="habit-grid">
+                                        <div class="habit-day"><div class="habit-date">June 15</div><div class="habit-icon">∼</div></div>
+                                        <div class="habit-day"><div class="habit-date">June 16</div><div class="habit-icon">∼</div></div>
+                                        <div class="habit-day"><div class="habit-date">June 17</div><div class="habit-icon">∼</div></div>
+                                        <div class="habit-day"><div class="habit-date">June 18</div><div class="habit-icon">∼</div></div>
+                                        <div class="habit-day"><div class="habit-date">June 19</div><div class="habit-icon">∼</div></div>
+                                        <div class="habit-day"><div class="habit-date">June 20</div><div class="habit-icon">∼</div></div>
+                                        <div class="habit-day"><div class="habit-date">June 21</div><div class="habit-icon">∼</div></div>
+                                    </div>
+                                </div>
+                                <div class="sub-panel" id="sub-panel-meta-week6">
+                                    <div class="practice-name">Habit 1: Brushing teeth with other hand</div>
+                                    <div class="habit-grid">
+                                        <div class="habit-day"><div class="habit-date">June 22</div><div class="habit-icon done">✅</div></div>
+                                        <div class="habit-day"><div class="habit-date">June 23</div><div class="habit-icon done">✅</div></div>
+                                        <div class="habit-day"><div class="habit-date">June 24</div><div class="habit-icon done">✅</div></div>
+                                        <div class="habit-day"><div class="habit-date">June 25</div><div class="habit-icon done">✅</div></div>
+                                        <div class="habit-day"><div class="habit-date">June 26</div><div class="habit-icon done">✅</div></div>
+                                        <div class="habit-day"><div class="habit-date">June 27</div><div class="habit-icon done">✅</div></div>
+                                        <div class="habit-day"><div class="habit-date">June 28</div><div class="habit-icon done">✅</div></div>
+                                    </div>
+                                    <div class="practice-name" style="margin-top: 20px;">Habit 2: Taste (alcohol)</div>
+                                    <div class="day-text"><p>I couldn’t find anything better for this task than to choose the taste of alcohol. It is truly disgusting to me both in taste and because of the bad associations it carries. Besides, the alcohol I have at home is Cahors. It’s a special ritual wine used in the Russian Orthodox Church during the liturgy as a symbol of the blood of Jesus. On top of that, I also have somewhat tense relations with Christianity. Or rather, just a certain dislike. In short, I made the perfect choice of taste :) I will try it as one drop on the tip of my finger once a day.</p></div>
+                                    <div class="habit-grid">
+                                        <div class="habit-day"><div class="habit-date">June 22</div><div class="habit-icon done">✅</div></div>
+                                        <div class="habit-day"><div class="habit-date">June 23</div><div class="habit-icon done">✅</div></div>
+                                        <div class="habit-day"><div class="habit-date">June 24</div><div class="habit-icon done">✅</div></div>
+                                        <div class="habit-day"><div class="habit-date">June 25</div><div class="habit-icon done">✅</div></div>
+                                        <div class="habit-day"><div class="habit-date">June 26</div><div class="habit-icon done">✅</div></div>
+                                        <div class="habit-day"><div class="habit-date">June 27</div><div class="habit-icon done">✅</div></div>
+                                        <div class="habit-day"><div class="habit-date">June 28</div><div class="habit-icon done">✅</div></div>
+                                    </div>
+                                </div>
+                                <div class="sub-panel active" id="sub-panel-meta-week7">
+                                    <div class="practice-name">Habit 1: Brushing teeth with other hand</div>
+                                    <div class="habit-grid">
+                                        <div class="habit-day"><div class="habit-date">June 29</div><div class="habit-icon done">✅</div></div>
+                                        <div class="habit-day"><div class="habit-date">June 30</div><div class="habit-icon done">✅</div></div>
+                                        <div class="habit-day"><div class="habit-date">July 1</div><div class="habit-icon missed">✗</div></div>
+                                        <div class="habit-day"><div class="habit-date">July 2</div><div class="habit-icon missed">✗</div></div>
+                                        <div class="habit-day"><div class="habit-date">July 3</div><div class="habit-icon done">✅</div></div>
+                                        <div class="habit-day"><div class="habit-date">July 4</div><div class="habit-icon done">✅</div></div>
+                                        <div class="habit-day"><div class="habit-date">July 5</div><div class="habit-icon missed">✗</div></div>
+                                    </div>
+                                    <div class="practice-name" style="margin-top: 20px;">Habit 2: Taste (alcohol)</div>
+                                    <div class="habit-grid">
+                                        <div class="habit-day"><div class="habit-date">June 29</div><div class="habit-icon done">✅</div></div>
+                                        <div class="habit-day"><div class="habit-date">June 30</div><div class="habit-icon done">✅</div></div>
+                                        <div class="habit-day"><div class="habit-date">July 1</div><div class="habit-icon missed">✗</div></div>
+                                        <div class="habit-day"><div class="habit-date">July 2</div><div class="habit-icon missed">✗</div></div>
+                                        <div class="habit-day"><div class="habit-date">July 3</div><div class="habit-icon done">✅</div></div>
+                                        <div class="habit-day"><div class="habit-date">July 4</div><div class="habit-icon done">✅</div></div>
+                                        <div class="habit-day"><div class="habit-date">July 5</div><div class="habit-icon missed">✗</div></div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="sub-panel" id="sub-panel-meta-week2">
-                                <div class="practice-name">Habit 1: Brushing teeth with other hand</div>
-                                <div class="habit-grid">
-                                    <div class="habit-day"><div class="habit-date">May 24</div><div class="habit-icon done">✅</div></div>
-                                    <div class="habit-day"><div class="habit-date">May 25</div><div class="habit-icon done">✅</div></div>
-                                    <div class="habit-day"><div class="habit-date">May 26</div><div class="habit-icon done">✅</div></div>
-                                    <div class="habit-day"><div class="habit-date">May 27</div><div class="habit-icon missed">✗</div></div>
-                                    <div class="habit-day"><div class="habit-date">May 28</div><div class="habit-icon missed">✗</div></div>
-                                    <div class="habit-day"><div class="habit-date">May 29</div><div class="habit-icon done">✅</div></div>
-                                    <div class="habit-day"><div class="habit-date">May 30</div><div class="habit-icon done">✅</div></div>
-                                    <div class="habit-day"><div class="habit-date">May 31</div><div class="habit-icon done">✅</div></div>
-                                </div>
-                                <div class="reflection-block"><span class="reflection-label">/ reflection /</span><p>Began to feel irritation and resistance from the meaninglessness, although I deliberately chose something as meaningless as possible and that was the point. A desire arose to choose a normal metamorphosis, but removing this meaningless one seems wrong, it should stay.</p></div>
-                            </div>
-                            <div class="sub-panel" id="sub-panel-meta-week3">
-                                <div class="practice-name">Habit 1: Brushing teeth with other hand</div>
-                                <div class="meta-note">⚠️ I forgot to mark each day, but I feel I’ve been doing it automatically with my left hand, or I remember mid‑process and switch hands. Not entirely sure.</div>
-                                <div class="habit-grid">
-                                    <div class="habit-day"><div class="habit-date">June 1</div><div class="habit-icon done">✅</div></div>
-                                    <div class="habit-day"><div class="habit-date">June 2</div><div class="habit-icon done">✅</div></div>
-                                    <div class="habit-day"><div class="habit-date">June 3</div><div class="habit-icon done">✅</div></div>
-                                    <div class="habit-day"><div class="habit-date">June 4</div><div class="habit-icon done">✅</div></div>
-                                    <div class="habit-day"><div class="habit-date">June 5</div><div class="habit-icon done">✅</div></div>
-                                    <div class="habit-day"><div class="habit-date">June 6</div><div class="habit-icon done">✅</div></div>
-                                    <div class="habit-day"><div class="habit-date">June 7</div><div class="habit-icon done">✅</div></div>
-                                </div>
-                            </div>
-                            <div class="sub-panel" id="sub-panel-meta-week4">
-                                <div class="practice-name">Habit 1: Brushing teeth with other hand</div>
-                                <div class="meta-note">⚠️ Quality uncertain – performed inconsistently.</div>
-                                <div class="habit-grid">
-                                    <div class="habit-day"><div class="habit-date">June 8</div><div class="habit-icon">∼</div></div>
-                                    <div class="habit-day"><div class="habit-date">June 9</div><div class="habit-icon">∼</div></div>
-                                    <div class="habit-day"><div class="habit-date">June 10</div><div class="habit-icon">∼</div></div>
-                                    <div class="habit-day"><div class="habit-date">June 11</div><div class="habit-icon">∼</div></div>
-                                    <div class="habit-day"><div class="habit-date">June 12</div><div class="habit-icon">∼</div></div>
-                                    <div class="habit-day"><div class="habit-date">June 13</div><div class="habit-icon">∼</div></div>
-                                    <div class="habit-day"><div class="habit-date">June 14</div><div class="habit-icon">∼</div></div>
-                                </div>
-                            </div>
-                            <div class="sub-panel" id="sub-panel-meta-week5">
-                                <div class="practice-name">Habit 1: Brushing teeth with other hand</div>
-                                <div class="meta-note">⚠️ Quality uncertain – performed inconsistently.</div>
-                                <div class="habit-grid">
-                                    <div class="habit-day"><div class="habit-date">June 15</div><div class="habit-icon">∼</div></div>
-                                    <div class="habit-day"><div class="habit-date">June 16</div><div class="habit-icon">∼</div></div>
-                                    <div class="habit-day"><div class="habit-date">June 17</div><div class="habit-icon">∼</div></div>
-                                    <div class="habit-day"><div class="habit-date">June 18</div><div class="habit-icon">∼</div></div>
-                                    <div class="habit-day"><div class="habit-date">June 19</div><div class="habit-icon">∼</div></div>
-                                    <div class="habit-day"><div class="habit-date">June 20</div><div class="habit-icon">∼</div></div>
-                                    <div class="habit-day"><div class="habit-date">June 21</div><div class="habit-icon">∼</div></div>
-                                </div>
-                            </div>
-                            <div class="sub-panel" id="sub-panel-meta-week6">
-                                <div class="practice-name">Habit 1: Brushing teeth with other hand</div>
-                                <div class="habit-grid">
-                                    <div class="habit-day"><div class="habit-date">June 22</div><div class="habit-icon done">✅</div></div>
-                                    <div class="habit-day"><div class="habit-date">June 23</div><div class="habit-icon done">✅</div></div>
-                                    <div class="habit-day"><div class="habit-date">June 24</div><div class="habit-icon done">✅</div></div>
-                                    <div class="habit-day"><div class="habit-date">June 25</div><div class="habit-icon done">✅</div></div>
-                                    <div class="habit-day"><div class="habit-date">June 26</div><div class="habit-icon done">✅</div></div>
-                                    <div class="habit-day"><div class="habit-date">June 27</div><div class="habit-icon done">✅</div></div>
-                                    <div class="habit-day"><div class="habit-date">June 28</div><div class="habit-icon done">✅</div></div>
-                                </div>
-                                <div class="practice-name" style="margin-top: 20px;">Habit 2: Taste (alcohol)</div>
-                                <div class="day-text"><p>I couldn’t find anything better for this task than to choose the taste of alcohol. It is truly disgusting to me both in taste and because of the bad associations it carries. Besides, the alcohol I have at home is Cahors. It’s a special ritual wine used in the Russian Orthodox Church during the liturgy as a symbol of the blood of Jesus. On top of that, I also have somewhat tense relations with Christianity. Or rather, just a certain dislike. In short, I made the perfect choice of taste :) I will try it as one drop on the tip of my finger once a day.</p></div>
-                                <div class="habit-grid">
-                                    <div class="habit-day"><div class="habit-date">June 22</div><div class="habit-icon done">✅</div></div>
-                                    <div class="habit-day"><div class="habit-date">June 23</div><div class="habit-icon done">✅</div></div>
-                                    <div class="habit-day"><div class="habit-date">June 24</div><div class="habit-icon done">✅</div></div>
-                                    <div class="habit-day"><div class="habit-date">June 25</div><div class="habit-icon done">✅</div></div>
-                                    <div class="habit-day"><div class="habit-date">June 26</div><div class="habit-icon done">✅</div></div>
-                                    <div class="habit-day"><div class="habit-date">June 27</div><div class="habit-icon done">✅</div></div>
-                                    <div class="habit-day"><div class="habit-date">June 28</div><div class="habit-icon done">✅</div></div>
-                                </div>
-                            </div>
-                            <div class="sub-panel" id="sub-panel-meta-week7">
-                                <div class="practice-name">Habit 1: Brushing teeth with other hand</div>
-                                <div class="habit-grid">
-                                    <div class="habit-day"><div class="habit-date">June 29</div><div class="habit-icon done">✅</div></div>
-                                    <div class="habit-day"><div class="habit-date">June 30</div><div class="habit-icon done">✅</div></div>
-                                    <div class="habit-day"><div class="habit-date">July 1</div><div class="habit-icon missed">✗</div></div>
-                                    <div class="habit-day"><div class="habit-date">July 2</div><div class="habit-icon missed">✗</div></div>
-                                    <div class="habit-day"><div class="habit-date">July 3</div><div class="habit-icon done">✅</div></div>
-                                    <div class="habit-day"><div class="habit-date">July 4</div><div class="habit-icon done">✅</div></div>
-                                    <div class="habit-day"><div class="habit-date">July 5</div><div class="habit-icon missed">✗</div></div>
-                                </div>
-                                <div class="practice-name" style="margin-top: 20px;">Habit 2: Taste (alcohol)</div>
-                                <div class="habit-grid">
-                                    <div class="habit-day"><div class="habit-date">June 29</div><div class="habit-icon done">✅</div></div>
-                                    <div class="habit-day"><div class="habit-date">June 30</div><div class="habit-icon done">✅</div></div>
-                                    <div class="habit-day"><div class="habit-date">July 1</div><div class="habit-icon missed">✗</div></div>
-                                    <div class="habit-day"><div class="habit-date">July 2</div><div class="habit-icon missed">✗</div></div>
-                                    <div class="habit-day"><div class="habit-date">July 3</div><div class="habit-icon done">✅</div></div>
-                                    <div class="habit-day"><div class="habit-date">July 4</div><div class="habit-icon done">✅</div></div>
-                                    <div class="habit-day"><div class="habit-date">July 5</div><div class="habit-icon missed">✗</div></div>
-                                </div>
+
+                            <div class="sub-panel" id="sub-panel-meta-sleep">
+                                <article class="day-entry">
+                                    <div class="day-header">
+                                        <span class="day-date">☾ September 12</span>
+                                        <span class="day-status status-done">metamorphosis</span>
+                                        <span class="day-divider"></span>
+                                    </div>
+                                    <div class="day-text">
+                                        <p>About 3 weeks ago I changed my position in sleep. I simply sleep on the other side of the bed now, with my head where my feet used to be.</p>
+                                        <p>And the first metamorphosis also stayed. I haven't paid attention to it for a long time.</p>
+                                    </div>
+                                </article>
                             </div>
                         </div>
 
-                        <!-- Sigil Tab (unchanged) -->
+                        <!-- Sigil Tab -->
                         <div class="tab-panel" id="panel-sigil">
+                            <article class="day-entry">
+                                <div class="day-header"><span class="day-date">September 3</span><span class="day-status status-done">sigil created</span><span class="day-divider"></span></div>
+                                <div class="day-text">
+                                    <p>Made a sigil based on a combination of two runes and a certain set of letters (extracted from the intention phrase). There was also a multilayer charging method, which even included a UV flashlight.</p>
+                                    <div class="reflection-block">
+                                        <span class="reflection-label">/ reflection /</span>
+                                        <p>Actually, over all this time (not only this month, but even before that) I made more than 10 sigils, but I really forgot about them. I was afraid that if I write them down, it would prevent me from forgetting them. And also I try to make them in a prepared state with a fairly large charge of energy, so there aren't really that many of them.</p>
+                                    </div>
+                                </div>
+                            </article>
+                            <article class="day-entry">
+                                <div class="day-header"><span class="day-date">July 3</span><span class="day-status status-done">paper sigils</span><span class="day-divider"></span></div>
+                                <div class="day-text">
+                                    <p>Made 3 paper sigils using the method from The Chaos Protocols.</p>
+                                </div>
+                            </article>
                             <article class="day-entry">
                                 <div class="day-header"><span class="day-date">May 31</span><span class="day-status status-done">sigil created</span><span class="day-divider"></span></div>
                                 <div class="day-text">
@@ -838,20 +1026,230 @@
                                     <div class="sigil-section"><h4><span class="section-icon">✦</span> Future Layers</h4><p>In the future, I might make new layers of the cyber‑temple, which could be accessed through certain click combinations on the page or through secret codes that need to be entered.</p></div>
                                 </div>
                             </article>
+                        </div>
+
+                        <!-- Runes Tab -->
+                        <div class="tab-panel" id="panel-runes">
                             <article class="day-entry">
-                                <div class="day-header"><span class="day-date">July 3</span><span class="day-status status-done">paper sigils</span><span class="day-divider"></span></div>
+                                <div class="day-header"><span class="day-date">September 1</span><span class="day-status status-done">runes</span><span class="day-divider"></span></div>
                                 <div class="day-text">
-                                    <p>Made 3 paper sigils using the method from The Chaos Protocols.</p>
+                                    <p>Appearance of the ritual in my head.</p>
+                                </div>
+                            </article>
+
+                            <article class="day-entry">
+                                <div class="day-header"><span class="day-date">September 3</span><span class="day-status status-done">runes</span><span class="day-divider"></span></div>
+                                <div class="day-text">
+                                    <p>After receiving the ritual, that day I dreamed about runes, but I didn't remember it. It seems it was meaningless, it was just about runes.</p>
+                                    <p>Made a sigil that included runes.</p>
+                                </div>
+                            </article>
+
+                            <article class="day-entry">
+                                <div class="day-header"><span class="day-date">September 4</span><span class="day-status status-done">runes</span><span class="day-divider"></span></div>
+                                <div class="day-text">
+                                    <p>Dreamed about runes again, also couldn't remember, but some strong noise from the outside world synchronized with the dream and in the dream something literally screamed a rune at me. Well, or what I identified as a rune, it could have been just something random because I'm now a bit obsessed with runes and think about them during the day.</p>
+                                </div>
+                            </article>
+
+                            <article class="day-entry">
+                                <div class="day-header"><span class="day-date">September 5</span><span class="day-status status-done">runes</span><span class="day-divider"></span></div>
+                                <div class="day-text">
+                                    <p>Note about studying runes. I want to try not to read the meanings of the runes (maybe read only the name and basic meaning), but extract from within, and then compare what came out.</p>
+                                </div>
+                            </article>
+
+                            <article class="day-entry">
+                                <div class="day-header"><span class="day-date">September 5</span><span class="day-status status-done">runes</span><span class="day-divider"></span></div>
+                                <div class="day-text">
+                                    <p>I have too strong hyperfixation on runes. I'm not interested in absolutely anything except runes.</p>
+                                </div>
+                            </article>
+
+                            <article class="day-entry">
+                                <div class="day-header"><span class="day-date">September 5 · day</span><span class="day-status status-done">runes</span><span class="day-divider"></span></div>
+                                <div class="day-text">
+                                    <p>Clearly there is a need for grounding but I don't know how to do it and don't want to.</p>
+                                    <div class="reflection-block">
+                                        <span class="reflection-label">/ amulet /</span>
+                                        <p>I found an old amulet at home, I bought it long ago, several years ago, but almost never wore it and didn't pay attention to it. It's a metal tree on a base of lapis lazuli (I think). It will be a symbol of Yggdrasil for me.</p>
+                                    </div>
+                                    <div class="reflection-block">
+                                        <span class="reflection-label">/ coming together /</span>
+                                        <p>In general it's starting to come together, what's happening (in terms of runes), and who is participating in this.</p>
+                                    </div>
+                                    <div class="reflection-block">
+                                        <span class="reflection-label">/ drawing /</span>
+                                        <p>I have my old small drawing - a forest creature, some character. I have an emotional connection with it and I carry it with me on all big trips, to all countries, for several years. There were no goals in creating it... but maybe I accidentally created a servitor? And now, I have a feeling that it will help find the needed tree in the forest.</p>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <article class="day-entry">
+                                <div class="day-header"><span class="day-date">September 6</span><span class="day-status status-done">runes</span><span class="day-divider"></span></div>
+                                <div class="day-text">
+                                    <p>Wrote several poems, synchronizing some of my sensations with runes. That is, I was looking for the most alive emotions and based on that wrote a poem that according to my sensations fits the rune. In the end there are 8 separate poems: Raido, Hagalaz, Naudiz, Kaunan, Perthro, Eihwaz, Isa, Ansuz.</p>
+                                    <div class="rune-list">
+                                        <span class="rune-chip">ᚱ Raido</span>
+                                        <span class="rune-chip">ᚺ Hagalaz</span>
+                                        <span class="rune-chip">ᚾ Naudiz</span>
+                                        <span class="rune-chip">ᚲ Kaunan</span>
+                                        <span class="rune-chip">ᛈ Perthro</span>
+                                        <span class="rune-chip">ᛇ Eihwaz</span>
+                                        <span class="rune-chip">ᛁ Isa</span>
+                                        <span class="rune-chip">ᚨ Ansuz</span>
+                                    </div>
+                                    <div class="reflection-block">
+                                        <span class="reflection-label">/ note /</span>
+                                        <p>I got a very quality good and pleasant grounding.</p>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <article class="day-entry">
+                                <div class="day-header"><span class="day-date">September 12</span><span class="day-status status-done">runes</span><span class="day-divider"></span></div>
+                                <div class="day-text">
+                                    <p>After all this I'm a bit afraid to dive into runes again, but I will definitely dive when I more consciously prepare the space for this.</p>
                                 </div>
                             </article>
                         </div>
 
-                        <!-- Dreamwork & Divination (unchanged) -->
+                        <!-- Dreamwork Tab -->
                         <div class="tab-panel" id="panel-dreamwork">
-                            <div class="placeholder-practice"><span class="symbol">✧</span><p>Dreamwork</p><p class="sub">— awaits your words —</p></div>
+                            <article class="day-entry">
+                                <div class="day-header"><span class="day-date">September 12</span><span class="day-status status-done">dreamwork</span><span class="day-divider"></span></div>
+                                <div class="day-text">
+                                    <p>I still can't manage to write down my dreams regularly… I think it's because I don't sleep enough hours, and so in the morning I'm very lazy to do it. In theory I could sleep more, right now it's a matter of habit. But in the vast majority of cases I think about dreams when I wake up, I remember them, I replay them in my thoughts. There's also an idea to make a servitor for writing down dreams.</p>
+                                </div>
+                            </article>
                         </div>
+
+                        <!-- Divination Tab -->
                         <div class="tab-panel" id="panel-divination">
-                            <div class="placeholder-practice"><span class="symbol">✦</span><p>Divination</p><p class="sub">— awaits your words —</p></div>
+                            <article class="day-entry">
+                                <div class="day-header"><span class="day-date">September 12</span><span class="day-status status-done">divination</span><span class="day-divider"></span></div>
+                                <div class="day-text">
+                                    <p>I don't know how to practice divination more and improve my skills in it. As for cards, I understand them fine and there's no problem with that. As for Waite-Smith tarot, I understand them both intuitively and I more or less know all the symbols on the cards well. As for Thoth tarot, here I both know it worse and understand it worse. But for magic I only use Thoth tarot. As for runes, I'm studying them (a bit in a specific way), but they don't associate with divination for me at all.</p>
+                                </div>
+                            </article>
+                        </div>
+
+                        <!-- Stories Tab -->
+                        <div class="tab-panel" id="panel-stories">
+                            <div class="sub-tab-scroll">
+                                <button class="scroll-arrow left-arrow" aria-label="Scroll left">‹</button>
+                                <div class="sub-tab-nav">
+                                    <button class="sub-tab-btn active" data-subtab="story-magicalname"><span class="sub-tab-icon">✦</span> Magical Name</button>
+                                    <button class="sub-tab-btn" data-subtab="story-baphomet"><span class="sub-tab-icon">⛧</span> Baphomet</button>
+                                </div>
+                                <button class="scroll-arrow right-arrow" aria-label="Scroll right">›</button>
+                            </div>
+
+                            <div class="sub-panel active" id="sub-panel-story-magicalname">
+                                <article class="day-entry">
+                                    <div class="day-header">
+                                        <span class="day-date">✦ Magical Name</span>
+                                        <span class="day-status status-done">story</span>
+                                        <span class="day-divider"></span>
+                                    </div>
+
+                                    <div class="day-text">
+
+                                        <div class="sigil-section">
+                                            <h4><span class="section-icon">✦</span> How it was created</h4>
+                                            <p>The time came to name the magical name for the Pact. I was taking a bath (in a very beautiful candlelit atmosphere), and thinking about a name. And in my head surfaced the moment when I came up with the best name in my life: it's the name of my cat. His name is Apyatka (in the original, Апятка is pronounced differently, without the "ya" sound). This name doesn't mean anything and no one else is called that (but he's over 10 years old and maybe someone has already managed to name themselves after him too), but when it was created there was some linguistic logic (nothing mystical, it's built on a gag).</p>
+                                            <p>Nothing better came to me than to name myself after my cat, since this is already the best name. I took the beginning of his name "Ap" (Апятка) and the end of mine "ya" (Анастасия). 222 is just my birth time, 2:22am.</p>
+                                            <p>Then I decided to check if it might actually mean something after all.</p>
+                                        </div>
+
+                                        <div class="sigil-section">
+                                            <h4><span class="section-icon">☽</span> Scythian Great Mother</h4>
+                                            <p>In Scythian mythology, Apya (or Api) is a powerful goddess of earth, water, and abundance. She was often depicted as a "snake-legged goddess," which symbolized a connection with underground waters and fertility.</p>
+                                            <p>The name translates as "to abound," "to flourish," "to grow," and is also connected with the concepts of "satiety" and "filling" (including with water, like a river flooding). Api is a central figure in the myth of the creation of the Scythians, acting as the mother of their first forefather Targitai and, thus, of the entire Scythian people. In Greek sources she was identified with Gaia, and in Scythian iconography she was often depicted as a formidable snake-legged goddess, half-maiden, half-snake.</p>
+                                            <div class="reflection-block">
+                                                <span class="reflection-label">/ personal resonance /</span>
+                                                <p>I didn't really know about her before this, and even now I don't feel any particular interest or resonance with her. But what's interesting is that I have some connection with the Scythians, but it's built not on interest, but on my connection with the place Uch Enmek in the Altai Mountains. Personally, I have a multilayered and complicated relationship with this place, at times tense (like right now), and this place itself has many cultural layers, and the Scythian layer there is huge. It's a key monument for understanding early Pazyryk culture. It's a very unusual place and even the most insensitive skeptics feel magic there, because there's a powerful recorded geomagnetic anomaly that affects the brain and makes you feel the presence of "something" (and the brain affects the anomaly).</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="sigil-section">
+                                            <h4><span class="section-icon">≋</span> General meaning</h4>
+                                            <p><strong>"Watery," "consisting of water," "relating to water":</strong> This is the main definition of the word āpya. It comes from the Sanskrit root ap, meaning "water."</p>
+                                            <p><strong>"Born in water" or "living in water":</strong> This meaning emphasizes the connection with the water habitat.</p>
+                                            <blockquote class="sigil-quote">And let me remind you, the name was created when I was in the bath, in water…</blockquote>
+                                            <p>Another interesting thing about the name is that my name is Ap'ya, not just Apya. This may be connected with Apāya (going downward, into suffering, deprivation of everything good), and the presence of the apostrophe may hint at the presence or special absence of the letter ā. Most likely, this apostrophe shows exactly the moment of transition from Apāya into Apya, that is, from suffering into abundance, toward the goddess.</p>
+                                        </div>
+
+                                        <div class="sigil-section">
+                                            <h4><span class="section-icon">◈</span> 222</h4>
+                                            <p>Since the number in my magical name is based on the time 2:22, it can be interpreted as 24. Which corresponds to the path of Nun on the Tree of Sephiroth. Why so? Let's start with the fact that my name is Anastasia, and from Greek it translates as "resurrected." If we talk about the circumstances of my birth, I was born in a very difficult way under very terrible conditions, and it's surprising that anyone survived there at all. And also I was born on the revolution holiday (it was the main holiday in the USSR and for some time in Russia) in a year when all systems in the country were essentially destroyed, it was a severe crisis. If we look astrologically, I'm an extra-concentrated Scorpio, and the path of Nun corresponds precisely to Scorpio.</p>
+                                            <p>Also it's 2+2+2=6, which corresponds to the sephirah Tiferet. I don't know what to say, let's suppose it's because I'm beautiful and harmonious. Generally speaking, 222 displays the very process of transition from Nun into Tiferet and at the same time displays both, and this literally means the same thing as the name Anastasia.</p>
+                                        </div>
+
+                                        <div class="sigil-section">
+                                            <h4><span class="section-icon">✧</span> Cosmology</h4>
+                                            <blockquote class="sigil-quote">And if you read a little of my cosmology, Ap'ya there is the Ocean, and 222 is a Grain of Sand.</blockquote>
+                                        </div>
+
+                                    </div>
+                                </article>
+                            </div>
+
+                            <div class="sub-panel" id="sub-panel-story-baphomet">
+                                <article class="day-entry">
+                                    <div class="day-header">
+                                        <span class="day-date">⛧ Baphomet</span>
+                                        <span class="day-status status-done">story</span>
+                                        <span class="day-divider"></span>
+                                    </div>
+
+                                    <div class="day-text">
+
+                                        <div class="sigil-section">
+                                            <h4><span class="section-icon">✦</span> Introduction</h4>
+                                            <p>In the last days thoughts about Baphomet started surfacing in me, they weren't intense, but there was some tension and contradiction in them. And the bright point was spam from Diana's haters, and they seem to hate her precisely about Baphomet (on Loki's advice I sent them a random meaningless message in pseudo-Latin, and it seems they got a little scared, because in response they wrote something very polite). In general, I had to dive into Baphomet.</p>
+                                            <p>I've known about Baphomet for a long time, and my perception of him was positively neutral. I liked his concept, it's close to me, but he didn't cause any particular interest in me. His iconography also didn't particularly stress me, but it didn't cause delight either. I did Diana's meditation with Baphomet several times a few months ago, and it was fine, and I even felt some freshness from him, fresh air and a breeze. But now everything has changed. I don't feel him as freshness, I feel him as heaviness. He became for me a figure of a judge, a bearer of "truth" and something that demands worship, and that establishes its own rigid order. And the hardest thing is that I see him as too male…</p>
+                                            <p>Since in culture the default sex is male, even an androgynous deity is automatically perceived as male, and to separate it from that you need extra effort. And the way Baphomet is most often depicted doesn't help this at all, or more precisely, his male goat head and his masculine body really get in the way. And also, I mostly studied everything about Baphomet in Russian, and in Russian there are basically no gender-neutral words, and there he is always called "he." And I think when Baphomet was created he was still basically male, the quantity and concentration of male symbols outweighs, and the female is just a light addition on a male base. And the female in him is subordinate to the male. After all, he was created by a man. And I don't want to have any male reference points and authorities (just so you know, Loki is not my authority, he's my bro).</p>
+                                            <p>Apparently this effect came from the difference between perceiving at a distance and up close, now I looked at him up close, and before I was interacting with him as a random interesting phenomenon.</p>
+                                            <p>In general, here I already came to the thought that maybe my story with the IOT is finished. Because I maybe won't become friends with Baphomet. But still, I decided to investigate whether Baphomet is somewhere in my cosmology. And for that let's look at its main branch by layers from the external world to its core.</p>
+                                        </div>
+
+                                        <div class="sigil-section">
+                                            <h4><span class="section-icon">✦</span> Loki</h4>
+                                            <p>My connection with the external world begins with the animus.</p>
+                                            <p>When I just started recognizing and identifying my animus, I thought my animus was Loki. But no, it's just a function of the psyche, which is a split as a result of socialization in a sick society, which in my case formed in such a way that Loki enters there very easily and is very comfortable there. It can exist and function without Loki himself, and maybe change, and at some point become inconvenient for Loki and become convenient for someone else. And sometimes I can have an obsession with the animus (not absolute), which feels like an obsession with Loki. But I guess I got lucky that my animus only worships me and makes fun of me. Even though there's some smell of the collective animus that hates me, wants my slavery or death, but Loki catches it and drives it away.</p>
+                                            <p>I'm not sure if this works only as Loki's qualities in me, or some external Loki who can connect to me. But usually I like to believe in some separate Loki who has his own consciousness.</p>
+                                            <p>Loki knows that I need him only as a tool for my existence in patriarchy, thanks to which I can live even in very harsh conditions of suppression of freedom, staying myself and doing what I want. But that doesn't bother him, since he himself wants to smash the hell out of patriarchy, and not even for the sake of something, he doesn't give a damn about anyone's rights, suffering, etc., but because destruction and deconstruction are his nature, and he does it including through me, I'm very convenient for him, as both a very fitting-in and a very not-fitting-in person. He helps me with some personal things too, but he also doesn't give a damn specifically about me, he acts only from resonance, and basically it turns out that for him helping me = helping himself. And from my side I completely trust him. Not his words, but his essence and direction. I don't need to adjust to him, since my nature already corresponds to him, and he doesn't need to adjust to me.</p>
+                                            <p>And also, because Loki is not completely "male" and he quite can transform into the female, he is the best conduit of the Ocean into the external world, that is, he is first of all a conduit of me into the external world, and he can do this with minimal distortions.</p>
+                                        </div>
+
+                                        <div class="sigil-section">
+                                            <h4><span class="section-icon">◈</span> Baphomet</h4>
+                                            <p>I've been thinking about this concept of the second layer of animus integration for a long time, when it moves from a separate function of the psyche into its core, but something was missing for me in this, there was some gap, and maybe Baphomet was missing. I needed some kind of adapter, mixer, well in general the one who does solve-coagula, without which this process is simply impossible. And even his male base is a plus here, since it's exactly what needs to be dissolved, and the female in him is a small crack through which it will go into the Ocean or out of the Ocean.</p>
+                                            <p>I can't say that I trust him. I stopped seeing anything neutral in him. And I don't really understand him yet, I don't understand what he wants and why. And does he even want to be my adapter, only a function? And why should he be there? Will my world limit him, or can he still realize himself in it fully? In my world no one can be limited. He stands at the moment of boundary, equilibrium, but is he ready to let through further? Apparently I understood his main mechanism, but I didn't understand what he's built into, what he is as a separate consciousness and what his political games are. But I'm not against getting to know him better and opening some parts of my consciousness to him to test what he will do with them.</p>
+                                        </div>
+
+                                        <div class="sigil-section">
+                                            <h4><span class="section-icon">≋</span> Ocean</h4>
+                                            <p>This space is without doubt nondual, it's a basic space. And it's not androgynous, it's absolutely female. If you look there from outside, it's the space into which Baphomet integrated the logos and all the other functions of the animus. These functions didn't become separate organs, didn't become a ray or a sword, they dissolved in this space and became its part, the space appropriated them. And it's important that they didn't drown in the ocean, but specifically transmuted into the female through Baphomet. Most of all this space resembles Yggdrasil. But it has a different form.</p>
+                                            <blockquote class="sigil-quote">It's a boundless ocean, without bottom, without edges. Its water is very dark. But the water in it is structured. It's structured by one very small grain of sand, around which it swirls into a spiral.</blockquote>
+                                        </div>
+
+                                        <div class="sigil-section">
+                                            <h4><span class="section-icon">✧</span> Grain of Sand</h4>
+                                            <p>During a practice with the Higher Self in the circle Octarine I saw a very bright image. If talking about sensations, it was an experience of ideal beauty and awe and I had tears flowing. It was a cluster of white sparkling, shine, stars. Very bright, shimmering radiance, folding into an anthropomorphic form. It had no face, it has no concept of sex and gender at all, it's not an androgyne like Baphomet, it's just nobody. Actually, I was a little upset that my Higher Self is not female, but it is what it is. And there's also some path to understanding it.</p>
+                                            <p>It is absolute completeness, it doesn't care about anything at all, about Earth, but this is not the indifference of aggression and frustration, it's literally indifference from completeness.</p>
+                                            <p>It didn't talk to me, but here's what became clear: first, this being is me, I don't need to become it and approach it, it's already me (with some layers on top), not in the future, but here and now. Second, it absolutely doesn't care in what form I will be, what I will do, how and when, and I can do nothing at all if I want to. I have no mission and destiny, I only have entertainments.</p>
+                                            <div class="reflection-block">
+                                                <span class="reflection-label">/ closing thought /</span>
+                                                <p>This is that grain of sand structuring the ocean. And apparently the entrance from the ocean into the grain of sand is the third layer of integration, but how to get there is unclear, and Baphomet definitely won't help there, at least because the Ocean won't let him through, or he'll just immediately dissolve there.</p>
+                                                <p><strong>Out of the same elements a completely different substance was built.</strong></p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </article>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -960,7 +1358,6 @@
                     })();
 
                     (function() {
-                        // Sub-tab navigation with scroll arrows
                         document.querySelectorAll('.sub-tab-scroll').forEach(scrollContainer => {
                             const nav = scrollContainer.querySelector('.sub-tab-nav');
                             const leftArrow = scrollContainer.querySelector('.left-arrow');
@@ -975,15 +1372,14 @@
                                 nav.scrollBy({ left: scrollAmount, behavior: 'smooth' });
                             });
 
-                            // Handle sub-tab button clicks
                             const subBtns = nav.querySelectorAll('.sub-tab-btn');
                             subBtns.forEach(btn => {
                                 btn.addEventListener('click', () => {
                                     const subtab = btn.dataset.subtab;
-                                    const parent = btn.closest('.tab-panel');
+                                    const parent = scrollContainer.parentElement;
                                     if (!parent) return;
-                                    const allSubBtns = parent.querySelectorAll('.sub-tab-btn');
-                                    const allSubPanels = parent.querySelectorAll('.sub-panel');
+                                    const allSubBtns = nav.querySelectorAll('.sub-tab-btn');
+                                    const allSubPanels = parent.querySelectorAll(':scope > .sub-panel');
                                     allSubBtns.forEach(b => b.classList.remove('active'));
                                     allSubPanels.forEach(p => p.classList.remove('active'));
                                     btn.classList.add('active');
